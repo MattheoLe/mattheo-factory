@@ -4,10 +4,10 @@
 
 | Besoin | Choix | Pourquoi |
 |---|---|---|
-| Framework | **Next.js** (dernière version stable), **App Router** | Écosystème React, maîtrisé par les agents de code, rendu statique + interactivité |
+| Framework | **Next.js** 16.4, **App Router** | Écosystème React, maîtrisé par les agents de code, rendu statique + interactivité |
 | Langage | **TypeScript** strict | |
-| Contenu | **MDX** via **Velite** | Collections typées (formations, modules), frontmatter validé au build, compilation MDX |
-| Style | **CSS custom properties** (`tokens.css`, source unique) + **Tailwind CSS** mappé sur ces tokens | Thème piloté par `data-theme` |
+| Contenu | **MDX** via **Velite** (installé en phase 2, ADR-009) | Collections typées (formations, modules), frontmatter validé au build, compilation MDX |
+| Style | **CSS custom properties** (`tokens.css`, source unique) + **Tailwind CSS v4** mappé sur ces tokens dans `app/globals.css` (ADR-006) | Thème piloté par `data-theme` |
 | Thème | **next-themes** (`attribute="data-theme"`, défaut `system`) | Pas de flash au chargement |
 | Polices | **next/font/google** : Poppins (600, 800), Inter (variable) | Auto-hébergées au build, pas d'appel externe en prod |
 | Animations | **Motion** (ex-Framer Motion) | Révélations étape par étape, transitions de slides |
@@ -47,21 +47,24 @@
 │  ├─ a-propos/page.tsx
 │  └─ styleguide/page.tsx          ← interne : tous les tokens et assets, light + dark
 ├─ components/
-│  ├─ brand/       ← Logotype, Halo, Grid, Lines, SignalDot, TechStar, Arc, Tag, Texture
+│  ├─ brand/       ← Logotype, Halo, Grid, Lines, DottedArc, SignalDot, TechStar, Arc, Tag, Texture, SectionLabel, DotMatrix
+│  ├─ theme/       ← ThemeProvider, ThemeToggle
 │  ├─ diagrams/    ← schémas réutilisables
 │  ├─ pedagogy/    ← Quiz, FlipCard, Reveal, Challenge, Scenario, KeyTakeaway
 │  ├─ adapt/       ← Level, Audience (affichage conditionnel)
 │  ├─ presenter/   ← plein écran, navigation clavier
 │  └─ mdx/         ← mapping des composants MDX
 ├─ lib/
-│  └─ session.ts   ← parsing/validation de la config URL
+│  ├─ session.ts   ← parsing/validation de la config URL
+│  ├─ color.ts     ← calcul de contraste WCAG (styleguide)
+│  └─ useCssVar.ts ← lecture live d'un token CSS
 └─ styles/
    └─ tokens.css   ← source unique des tokens
 ```
 
 ## Conventions
 - Composants en PascalCase, contenu en kebab-case.
-- Aucune couleur hors de `tokens.css`. Tailwind ne référence que les tokens (`bg-[--surface]` interdit, utiliser les classes mappées).
+- Aucune couleur hors de `tokens.css`. Tailwind ne référence que les tokens : utiliser les classes mappées (`bg-surface`, `text-text-muted`, `bg-grad-main`…), jamais de valeur arbitraire (`bg-(--surface)`). En SVG : `style={{ fill: "var(--token)" }}` (ADR-006).
 - `"use client"` uniquement là où c'est nécessaire.
 - La configuration de session passe **uniquement par l'URL** (voir `CONTENT_MODEL.md`).
 - `localStorage` uniquement pour le confort (dernière config). Le thème est géré par next-themes.

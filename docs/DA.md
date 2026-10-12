@@ -61,7 +61,11 @@ Les couleurs marquées *(dérivé)* ne figurent pas dans les planches. Ce sont d
 
 > ⚠️ La planche light indique un dégradé dark `#0057FF → #0B3DFF`. C'est probablement une coquille pour `#0B0F14`, à confirmer.
 
+> **Phase 1** : `styles/tokens.css` est l'implémentation de référence. Tokens dérivés ajoutés (`--on-primary`, `--on-accent`, `--star`, `--line-*`, `--grid-line`, `--dot-matrix`, `--signal-glow`, `--focus-*`…) et `--grad-deep` / `--grad-signal` définis aussi en light : voir ADR-007. Focus : voir ADR-008.
+
 ### Règles de contraste (calculées)
+
+> Mesuré sur `--bg` light (`#F7F8FA`) et non sur blanc pur : cobalt 5.19:1, cyan 1.57:1, orange 2.69:1. Les règles ci-dessous restent valables (voir `/styleguide`, section Contrastes).
 
 | Combinaison | Ratio | Usage |
 |---|---|---|
