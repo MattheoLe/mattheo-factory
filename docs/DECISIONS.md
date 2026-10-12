@@ -80,3 +80,12 @@ Format : contexte → décision → conséquences. On ajoute, on ne réécrit pa
 - **Animations** : CSS uniquement (entrée de slide, révélations, nuage de mots), neutralisées par `prefers-reduced-motion`. Motion reste disponible si un besoin dépasse le CSS.
 - **Quiz** : révélation en CSS pur (`:has`), sans JavaScript.
 **Conséquences** : aucune dépendance lourde, aucune donnée envoyée. Limite : la synchronisation ne fonctionne qu'entre fenêtres du même navigateur (suffisant pour le duo écran portable + projecteur). Le mode téléphone (v1.1) se branchera sur la même API de stockage.
+
+## ADR-013 — Catalogue « streaming »
+**Contexte** : le porteur de projet veut que le catalogue reprenne les codes d'une plateforme de streaming (« voir une formation comme une série »), avec une intro animée, des affiches, des favoris.
+**Décision** :
+- On reprend les **codes d'expérience** (tête d'affiche, rangées horizontales, tuile qui s'agrandit au survol, top 10, ma liste, reprendre, fiche avec épisodes), **jamais les éléments de marque** d'un tiers : ni logo, ni couleur, ni son. L'intro est un « ident » propre à la DA (logotype, rubans cobalt/cyan, plongée dans le point orange) ; le son est un fichier optionnel `public/sounds/intro.mp3` **original ou sous licence**.
+- **Affiches générées en SVG** à partir des assets de la DA, une composition par pilier, variée par le numéro de la formation. Les surfaces « cinéma » (affiches, tête d'affiche, intro) utilisent toujours les tokens sombres (`data-theme="dark"`), la page suit le thème.
+- **Favoris et reprise** dans `localStorage` (même store que le moteur de présentation, ADR-012) : confort du visiteur, aucun compte (ADR-001).
+- Les 13 autres formations ont une fiche Velite (métadonnées de `CATALOGUE.md`) sans séquences ; seules les formations avec séquences sont configurables.
+**Conséquences** : la page `/formations` remplace le catalogue « liste + filtres » prévu ; les filtres par niveau et public restent à ajouter (PRD v0.3).

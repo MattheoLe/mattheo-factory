@@ -23,16 +23,27 @@ _Dernière mise à jour : 12/10/2026_
   - [x] Mode présentation (clavier, plein écran, écran masqué) + vue présentateur synchronisée (notes, slide suivante, chrono)
   - [x] Composants : Slide (5 mises en page), Step/Points, Quiz, Poll, WordCollect (effet miroir), Stat, QRCode, Quote, Excerpt, Pillars, Card/Columns ; schémas NextWord, Rings, Pipeline, Timeline
   - [x] `<Level>` / `<Audience>` + configurateur de session (`/formations/ia-generative/configurer`)
-  - [x] Cours complet en MDX : 13 séquences, 64 slides (2h · découverte), notes de l'orateur, quiz final de 10 questions
+  - [x] Cours en MDX, notes de l'orateur, quiz final de 10 questions
+- **Itération 1 sur le pilote** (retours du formateur)
+  - [x] IA / ML / DL / IA générative / IA agentique ; animation des vecteurs (roi − homme + femme ≈ reine, dézoom)
+  - [x] Multimodalité, exemples en images, démos texte / image / vidéo
+  - [x] Nouvelle séquence « Ce qu'elle rend possible » (santé, science, accessibilité)
+  - [x] Nouvelle séquence « Prévention » (énergie, coûts cachés, 3 arnaques réelles, loi SREN)
+  - [x] Atelier deepfake (demi-journée) ; vote d'arbitrage bénéfices / risques
+  - [x] Numérotation automatique des séquences, durées par format (2h = 114 min, 1h = 53 min, demi-journée = 3h09), séquences décochables
+- **Catalogue « streaming »** (PRD v0.3, ADR-013)
+  - [x] CTA « Se former » + intro animée (son optionnel, à fournir)
+  - [x] Tête d'affiche, rangées défilantes, tuiles qui s'agrandissent, top 10, ma liste, reprendre, fiche avec épisodes
+  - [x] Affiches SVG pour les 14 formations ; fiches Velite des 13 autres formations (métadonnées)
 
 ## 🔄 En cours — Itérations sur le pilote (branche `phase-2-conception`)
 - [ ] Relecture du cours par le formateur (fond, ton, exemples, anecdotes personnelles)
-- [ ] Valider les chiffres marqués « à valider » (séquences 2 et 6) et le cas *Mata v. Avianca*
+- [ ] Valider les chiffres « à valider » (séquences 2, 5, 7, 9), le cas *Mata v. Avianca*, les montants de la loi SREN
 - [ ] Slide « Qui suis-je » : nom et accroches à valider
-- [ ] « Humain ou IA ? » : remplacer/compléter les extraits, ajouter des images (photos réelles vs générées)
-- [ ] Lien du formulaire d'avis (QR code séquence 12)
-- [ ] Variante 1h : les durées affichées sont celles de la 2h (68 min) → choisir les séquences à raccourcir
-- [ ] Numéros de séquence en dur (« 01 », « 02 »…) : décalés quand une séquence est masquée (expert) → numérotation automatique
+- [ ] Images à fournir (`public/formations/ia-generative/`) : exemples multimodaux, photo réelle/générée, images virales
+- [ ] « Humain ou IA ? » : remplacer/compléter les extraits
+- [ ] Lien du formulaire d'avis (QR code séquence 15)
+- [ ] Son d'intro original (`public/sounds/intro.mp3`)
 - [ ] Aperçu de toutes les variantes (ADR-004)
 - [ ] Test de projection en conditions réelles (16:9, light et dark, deux écrans)
 
@@ -42,10 +53,9 @@ _Dernière mise à jour : 12/10/2026_
 - Points ⚠️ de DA.md : nom de `#0B0F14`, dégradé `#0B3DFF`, `--grad-deep`/`--grad-signal` en light (ADR-007)
 - Questions ouvertes du PRD (domaine, export PDF, mention onepoint)
 
-## 📋 Phase 5 : catalogue
-- [ ] Fiches des 13 autres formations (métadonnées)
-- [ ] Page catalogue + filtres
-- [ ] Fiche formation
+## 📋 Catalogue : suite
+- [ ] Filtres par niveau et public (PRD v0.3)
+- [ ] Rédiger les formations `v1` (art du prompt, prototyper, créativité augmentée, IA responsable)
 
 ## 📋 v1.1
 - [ ] Mode « téléphone » pour Quiz et Poll via service temps réel hébergé (ADR dédié)

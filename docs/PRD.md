@@ -1,6 +1,6 @@
 # PRD — Building things. Formations
 
-**Version courante : v0.2** — mode présentateur, effet miroir, quiz bimodes, vote téléphone en v1.1
+**Version courante : v0.3** — catalogue « streaming » (affiches, rangées, ma liste, reprendre), intro animée
 Historique : voir section « Changelog » en bas.
 
 ---
@@ -20,7 +20,7 @@ Un site unique qui sert à la fois de **vitrine du catalogue** de formations et 
 ## 3. Périmètre v1
 
 ### Inclus
-- **Catalogue** : liste des formations, filtres par pilier (Idées, Produits, Technologie, Impact), niveau et public.
+- **Catalogue façon plateforme de streaming** : formation en tête d'affiche, rangées par catégorie (piliers, grand public, bientôt) qui défilent, top 10, **ma liste** (favoris, stockés dans le navigateur), **reprendre la formation** (position de la dernière session), fiche « Plus d'infos » avec les épisodes (séquences). Une affiche générée dans la DA pour chaque formation. Intro animée en arrivant depuis le CTA « Se former » de l'accueil. Filtres par niveau et public : à ajouter.
 - **Fiche formation** : promesse, objectifs, publics, niveaux, durées possibles, plan des modules.
 - **Configurateur de session** : choix du niveau, du public, du format de durée et des modules → génère une URL de session.
 - **Mode présentation** : plein écran, navigation clavier (←/→, espace pour révéler, `T` pour le thème, `Échap` pour quitter).
@@ -64,6 +64,7 @@ Un site unique qui sert à la fois de **vitrine du catalogue** de formations et 
 ---
 
 ## Changelog
+- **v0.3** — Catalogue repensé en expérience « streaming » (demande du porteur de projet), intro animée, favoris et reprise dans le navigateur (ADR-013).
 - **v0.2** — Ajout du mode présentateur, de l'effet miroir, des quiz/avis bimodes et des QR codes. Vote par téléphone sorti des exclusions et planifié en v1.1 (ADR-010). Formation pilote validée (ADR-011).
 - **v0.1.1** — Stack : Next.js (ADR-005). Pas de changement de périmètre.
 - **v0.1** — Création. Vitrine + support de présentation, sans compte, configuration par le formateur.
