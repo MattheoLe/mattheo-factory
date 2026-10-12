@@ -1,0 +1,137 @@
+---
+title: Comment ça marche
+kind: core
+duration: 15
+---
+
+<Slide layout="section" kicker="02">
+
+<p className="s-title-xl">Comment<br />ça marche ?</p>
+
+</Slide>
+
+<Slide layout="statement">
+
+<p className="s-statement">Une IA générative ne « sait » rien<span className="text-accent">.</span><br />Elle prédit la suite la plus probable.</p>
+
+<Notes>
+
+**La phrase la plus importante du cours.** La poser, laisser un silence.
+
+Tout le reste en découle : ce qu'elle fait bien (écrire de façon fluide) et ce qu'elle fait mal (inventer avec aplomb).
+
+</Notes>
+
+</Slide>
+
+<Slide kicker="Démonstration">
+
+<NextWord sentence="Le chat dort sur le" candidates={[
+  { word: "canapé", p: 41 },
+  { word: "lit", p: 32 },
+  { word: "rebord", p: 14 },
+  { word: "clavier", p: 9 },
+  { word: "toit", p: 4 }
+]} />
+
+<Notes>
+
+**Faire jouer la salle d'abord** : « quel mot vient ensuite ? » Puis révéler les candidats un par un, et enfin le mot choisi.
+
+- Vous venez de faire exactement ce que fait l'IA : **deviner le mot le plus probable**, d'après tout ce que vous avez lu et entendu dans votre vie.
+- Les pourcentages sont **illustratifs** : ils montrent le principe, ce ne sont pas ceux d'un vrai modèle.
+
+</Notes>
+
+</Slide>
+
+<Slide kicker="Mot après mot">
+
+# Une réponse = des centaines de prédictions
+
+<Pipeline loop highlight={2} steps={[
+  { title: "Votre question", text: "« Explique-moi la photosynthèse. »" },
+  { title: "Découpage", text: "Le texte est découpé en petits morceaux de mots." },
+  { title: "Prédiction", text: "Elle calcule le morceau suivant le plus probable." },
+  { title: "Ajout", text: "Le morceau est ajouté à la réponse." }
+]} />
+
+<Notes>
+
+C'est pour ça que la réponse **s'affiche petit à petit** à l'écran : elle est littéralement fabriquée morceau par morceau.
+
+</Notes>
+
+</Slide>
+
+<Slide kicker="L'apprentissage">
+
+# Comment apprend-elle ? En lisant énormément.
+
+<Pipeline highlight={1} steps={[
+  { title: "Des textes", text: "Une immense partie du web, des livres, des articles." },
+  { title: "Un jeu de devinettes", text: "Deviner le mot caché, des milliards et des milliards de fois." },
+  { title: "Des réglages", text: "À chaque erreur, le modèle s'ajuste un tout petit peu." },
+  { title: "Des humains", text: "Ils notent les réponses pour la rendre utile et polie." }
+]} />
+
+<Notes>
+
+- Ordre de grandeur : un humain ne pourrait pas lire en une vie entière ce que ces modèles ont « lu ».
+- Conséquence directe : **elle reproduit ce qu'elle a lu**, y compris les erreurs et les biais (on y revient séquence 4).
+- Elle a une **date de fin d'apprentissage** : elle ne connaît pas l'actualité, sauf si on la connecte à internet.
+
+</Notes>
+
+</Slide>
+
+<Slide layout="center">
+
+<Quote>L'autocomplétion de votre téléphone… en beaucoup, beaucoup plus puissant<span className="text-accent">.</span></Quote>
+
+<Notes>
+
+L'analogie que les gens retiennent. Montrer son téléphone : la barre de suggestions au-dessus du clavier fait la même chose, en tout petit.
+
+</Notes>
+
+</Slide>
+
+<Slide kicker="Petit quiz">
+
+<Quiz
+  question="Une IA générative comprend-elle ce qu'elle dit ?"
+  options={["Oui, comme nous", "Non : elle calcule ce qui est probable", "Seulement quand elle cite ses sources"]}
+  answer={1}
+  explanation="Elle manipule les régularités du langage, sans expérience du monde. Les chercheurs débattent encore de ce que « comprendre » veut dire — mais elle ne vérifie pas ce qu'elle écrit."
+/>
+
+<Notes>
+
+Vote à main levée sur chaque option, puis révélation.
+
+Nuance à apporter : ses réponses **donnent l'impression** qu'elle comprend, parce qu'elle a appris sur des textes écrits par des humains qui, eux, comprenaient.
+
+</Notes>
+
+</Slide>
+
+<Level is="expert">
+<Slide kicker="Pour aller plus loin">
+
+# Trois réglages qui changent tout
+
+<Columns>
+  <Card title="Les tokens" step>Le modèle ne voit pas des mots mais des morceaux de mots. Il paie, calcule et se limite en tokens.</Card>
+  <Card title="La température" step>Plus elle est haute, plus le modèle choisit des mots moins probables : plus créatif, moins fiable.</Card>
+  <Card title="Le contexte" step signal>La quantité de texte qu'il peut garder « en tête » pendant une conversation. Au-delà, il oublie.</Card>
+</Columns>
+
+<Notes>
+
+Slide **expert uniquement**. Faire le lien avec l'usage : température basse pour un résumé fidèle, plus haute pour un brainstorming ; conversations trop longues = le modèle « oublie » le début.
+
+</Notes>
+
+</Slide>
+</Level>

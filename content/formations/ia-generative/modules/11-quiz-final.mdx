@@ -1,0 +1,75 @@
+---
+title: Quiz final
+kind: quiz
+duration: 10
+---
+
+<Slide layout="title" kicker="Quiz final">
+
+<p className="s-title-xl">10 questions<span className="text-accent">.</span></p>
+
+<p className="s-lead">Comptez vos bonnes réponses sur vos doigts.</p>
+
+<Notes>
+
+**Mode salle (v1)** : chacun compte ses bonnes réponses. Lire chaque question, laisser 10 secondes, vote à main levée si besoin, puis révéler.
+
+Mode téléphone : prévu en v1.1.
+
+</Notes>
+
+</Slide>
+
+<Slide>
+<Quiz label="Question 1 / 10" question="Pour écrire sa réponse, une IA générative…" options={["cherche la réponse dans une base de données", "prédit la suite la plus probable, morceau par morceau", "recopie une page web", "demande à un humain"]} answer={1} explanation="Elle fabrique sa réponse en prédisant, morceau par morceau, ce qui est le plus probable." />
+</Slide>
+
+<Slide>
+<Quiz label="Question 2 / 10" question="ChatGPT, Le Chat, Gemini et Claude sont…" options={["des moteurs de recherche", "des réseaux sociaux", "des IA génératives", "des assistants vocaux"]} answer={2} explanation="Ce sont des IA génératives de texte, aussi appelées assistants conversationnels." />
+</Slide>
+
+<Slide>
+<Quiz label="Question 3 / 10" question="En IA, une « hallucination », c'est…" options={["un bug qui fait planter l'ordinateur", "une information inventée, donnée avec assurance", "une image générée", "une réponse trop longue"]} answer={1} explanation="L'IA produit ce qui est probable, pas ce qui est vrai : elle peut inventer sources, chiffres ou citations." />
+</Slide>
+
+<Slide>
+<Quiz label="Question 4 / 10" question="Une IA vous cite une source précise. Que faites-vous ?" options={["Je lui fais confiance", "Je vérifie que la source existe et dit bien ça", "Je lui demande si elle est sûre", "Je la cite telle quelle"]} answer={1} explanation="Lui demander « es-tu sûre ? » ne suffit pas : elle peut confirmer une erreur. Seule la vérification compte." />
+</Slide>
+
+<Slide>
+<Quiz label="Question 5 / 10" question="Quelle information ne faut-il jamais donner à une IA en ligne ?" options={["Une recette de cuisine", "Une question d'histoire", "Un mot de passe", "Le début d'un poème"]} answer={2} explanation="Mots de passe, données de santé, données de clients : ce que vous tapez peut être conservé et réutilisé." />
+</Slide>
+
+<Slide>
+<Quiz label="Question 6 / 10" question="ChatGPT a été ouvert au grand public en…" options={["2012", "2018", "2022", "2025"]} answer={2} explanation="Fin novembre 2022. Mais l'IA, elle, existe depuis les années 1950." />
+</Slide>
+
+<Slide>
+<Quiz label="Question 7 / 10" question="D'où viennent les biais d'une IA ?" options={["De ses développeurs, volontairement", "Des données sur lesquelles elle a appris", "D'un virus", "Elle n'a pas de biais"]} answer={1} explanation="Elle reproduit les stéréotypes présents dans les textes et images qu'elle a lus, et peut les amplifier." />
+</Slide>
+
+<Slide>
+<Quiz label="Question 8 / 10" question="D'ici 2030, selon les employeurs interrogés par le Forum économique mondial…" options={["l'IA va supprimer plus d'emplois qu'elle n'en crée", "les transformations vont créer plus d'emplois qu'elles n'en suppriment", "rien ne va changer", "tous les emplois de bureau vont disparaître"]} answer={1} explanation="Environ 170 millions d'emplois créés pour 92 millions supprimés — mais ce ne sont pas les mêmes, d'où l'enjeu de la formation." />
+</Slide>
+
+<Slide>
+<Quiz label="Question 9 / 10" question="Pour obtenir une bonne réponse, il vaut mieux…" options={["poser une question très courte", "donner du contexte, un objectif et un format", "écrire en anglais", "répéter la question plusieurs fois"]} answer={1} explanation="Qui je suis, ce que je veux, pour qui, dans quel format, avec quel ton." />
+</Slide>
+
+<Slide>
+<Quiz label="Question 10 / 10" question="Vrai ou faux : plus j'utilise l'IA, moins j'ai besoin de réfléchir." options={["Vrai", "Faux"]} answer={1} explanation="Faux : elle est utile quand on garde la main. Sans esprit critique, on finit par dépendre d'un outil qui peut se tromper." />
+</Slide>
+
+<Slide kicker="Résultat">
+
+# Combien de bonnes réponses ?
+
+<Poll id="score" options={["0 à 4", "5 à 7", "8 à 10"]} />
+
+<Notes>
+
+Féliciter le groupe, revenir sur la question qui a le plus fait hésiter.
+
+</Notes>
+
+</Slide>

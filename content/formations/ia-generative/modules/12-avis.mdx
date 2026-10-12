@@ -1,0 +1,32 @@
+---
+title: Avis global
+kind: feedback
+duration: 3
+---
+
+<Slide kicker="Votre avis">
+
+# Cette séance vous a été…
+
+<Columns>
+  <Poll id="avis" options={["Peu utile", "Utile", "Très utile"]} />
+  <QRCode label="Votre avis détaillé, en 1 minute" />
+</Columns>
+
+<Notes>
+
+Vote à main levée, puis inviter à scanner le QR code pour un avis détaillé.
+
+⚠️ **Lien du formulaire à configurer** (Google Forms, Tally…) : ajouter `url="https://…"` au composant `QRCode` de ce fichier. Mode téléphone intégré : v1.1.
+
+</Notes>
+
+</Slide>
+
+<Slide kicker="En un mot">
+
+# Un mot pour résumer la séance ?
+
+<WordCollect id="avis-mot" />
+
+</Slide>
