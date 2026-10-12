@@ -17,7 +17,12 @@ const formations = defineCollection({
     pillar,
     status: s.enum(["pilote", "v1", "bientot"]),
     promise: s.string(),
-    keyMessage: s.string(),
+    keyMessage: s.string().optional(),
+    /** Catalogue number (CATALOGUE.md), used for ordering */
+    number: s.number(),
+    /** Highlight of the course (« moment fort ») */
+    highlight: s.string().optional(),
+    tags: s.array(s.string()).default([]),
     audiences: s.array(audience),
     levels: s.array(level),
     /** Ordered module ids (file prefix, e.g. "01") per format */

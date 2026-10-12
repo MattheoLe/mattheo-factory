@@ -75,6 +75,7 @@ export function Deck({ deckId, title, formats, children }: DeckProps) {
   const [position, setPosition] = useDeckStore<Position>(deckId, "position", START);
   const [startedAt, setStartedAt] = useDeckStore<number | null>(deckId, "startedAt", null);
   const [blank, setBlank] = useDeckStore<boolean>(deckId, "blank", false);
+  const [, setTotal] = useDeckStore<number>(deckId, "total", 0);
 
   // Slide count follows the DOM (level/audience/format filters add or remove slides).
   const subscribeTrack = useCallback((onChange: () => void) => {
@@ -131,6 +132,11 @@ export function Deck({ deckId, title, formats, children }: DeckProps) {
       clearDeckStore(deckId);
     }
   }, [deckId]);
+
+  // Slide total, read by the catalogue's "Reprendre" row.
+  useEffect(() => {
+    if (slideCount > 0) setTotal(slideCount);
+  }, [slideCount, setTotal]);
 
   // Reflect position on the DOM: slide states, numbering, revealed steps, notes.
   useEffect(() => {
