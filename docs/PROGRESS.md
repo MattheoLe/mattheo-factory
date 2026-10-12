@@ -15,7 +15,6 @@ _Dernière mise à jour : 12/10/2026_
   - [x] Page `/styleguide` : palette, tokens, typo, logotype, assets, dégradés, contrastes calculés en direct
   - [x] Accueil provisoire : bloc « Positionnement »
   - [x] Focus double anneau (ADR-008), `prefers-reduced-motion`, navigation clavier
-
 - PRD v0.2 : mode présentateur, effet miroir, quiz/avis bimodes, vote téléphone en v1.1 (ADR-010)
 - Réorganisation : pilote d'abord, catalogue ensuite (ADR-011)
 - `docs/CONTENT_MODEL.md` reconstruit (v0, à valider)
