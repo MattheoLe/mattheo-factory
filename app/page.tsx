@@ -52,6 +52,12 @@ export default function HomePage() {
             <span>Consultant en innovation &amp; IA</span>
             <Tag>chez onepoint</Tag>
           </div>
+
+          <div className="mt-10">
+            <Tag arrow href="/formations/ia-generative/configurer">
+              Formation pilote : Comprendre l&apos;IA générative
+            </Tag>
+          </div>
         </section>
 
         <aside aria-label="Piliers" className="relative">
