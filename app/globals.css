@@ -120,3 +120,23 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* Brand asset helpers */
+@utility glow-signal {
+  box-shadow: 0 0 12px 3px var(--signal-glow);
+}
+
+@keyframes signal-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.25);
+    opacity: 0.75;
+  }
+}
+@utility animate-signal {
+  animation: signal-pulse 2.4s ease-in-out infinite;
+}
