@@ -1,0 +1,418 @@
+/*
+ * Presentation deck. Slides are 16:9 containers: every size inside a slide is
+ * expressed in cqw (1cqw = 1% of the slide width) so a slide renders the same
+ * on a projector, a laptop or the presenter preview. Colors: tokens only.
+ */
+
+/* ------------------------------------------------------------------ */
+/* Stage                                                               */
+/* ------------------------------------------------------------------ */
+.deck {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  background-color: var(--bg);
+}
+
+.deck[data-view="audience"] {
+  display: grid;
+  place-items: center;
+}
+
+.deck[data-view="audience"] .deck-track {
+  position: relative;
+  width: min(100vw, calc(100dvh * 16 / 9));
+  aspect-ratio: 16 / 9;
+}
+
+.deck-module {
+  display: contents;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  display: none;
+  container-type: size;
+  overflow: hidden;
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+.slide[data-state="active"] {
+  display: block;
+  animation: slide-enter 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.deck[data-blank] .slide[data-state="active"] {
+  visibility: hidden;
+}
+
+@keyframes slide-enter {
+  from {
+    opacity: 0;
+    translate: 0 1.2cqw;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+.slide-decor {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.slide-body {
+  position: relative;
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2.2cqw;
+  padding: 5.5cqw 7cqw 7cqw;
+}
+
+.slide[data-layout="title"] .slide-body {
+  justify-content: flex-end;
+  padding-bottom: 9cqw;
+}
+
+.slide[data-layout="center"] .slide-body {
+  align-items: center;
+  text-align: center;
+}
+
+.slide-footer {
+  position: absolute;
+  inset: auto 7cqw 2.6cqw;
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.05cqw;
+  letter-spacing: -0.02em;
+  color: var(--text-muted);
+}
+
+
+
+/* ------------------------------------------------------------------ */
+/* Slide typography (MDX mapping in components/mdx)                    */
+/* ------------------------------------------------------------------ */
+.s-kicker {
+  display: flex;
+  align-items: center;
+  gap: 1.2cqw;
+  font-weight: 600;
+  font-size: 1.1cqw;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.s-kicker::after {
+  content: "";
+  width: 3cqw;
+  height: 0.18cqw;
+  border-radius: 999px;
+  background-color: var(--primary);
+}
+
+.s-title,
+.s-title-xl,
+.s-statement {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 0.98;
+  max-width: 80%;
+  text-wrap: balance;
+}
+
+.s-title {
+  font-size: 4.6cqw;
+}
+
+.s-title-xl {
+  font-size: 8cqw;
+  line-height: 0.92;
+}
+
+.s-statement {
+  font-size: 5.6cqw;
+  max-width: 85%;
+}
+
+.s-subtitle {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 2.4cqw;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.s-lead {
+  max-width: 70%;
+  font-size: 2cqw;
+  line-height: 1.4;
+  color: var(--text-muted);
+  text-wrap: pretty;
+}
+
+.s-text {
+  font-size: 1.7cqw;
+  line-height: 1.45;
+}
+
+.s-small {
+  font-size: 1.15cqw;
+  line-height: 1.4;
+  color: var(--text-muted);
+}
+
+.s-strong {
+  font-weight: 700;
+  color: var(--link);
+}
+
+.slide[data-layout="center"] .s-title,
+.slide[data-layout="center"] .s-lead,
+.slide[data-layout="center"] .s-statement {
+  max-width: 85%;
+  margin-inline: auto;
+}
+
+.s-list {
+  display: grid;
+  gap: 1.3cqw;
+  max-width: 75%;
+  font-size: 2cqw;
+  line-height: 1.35;
+}
+
+.s-list > li {
+  position: relative;
+  padding-left: 3cqw;
+}
+
+.s-list > li::before {
+  content: "";
+  position: absolute;
+  left: 0.4cqw;
+  top: 0.75em;
+  width: 1.4cqw;
+  height: 0.18cqw;
+  border-radius: 999px;
+  background-color: var(--primary);
+}
+
+/* ------------------------------------------------------------------ */
+/* Progressive reveal                                                  */
+/* ------------------------------------------------------------------ */
+.slide [data-step] {
+  opacity: 0;
+  translate: 0 1cqw;
+  transition:
+    opacity 0.45s ease,
+    translate 0.45s ease;
+}
+
+.slide [data-step][data-shown],
+.slide[data-state="next"] [data-step] {
+  opacity: 1;
+  translate: 0 0;
+}
+
+/* ------------------------------------------------------------------ */
+/* Audience HUD                                                        */
+/* ------------------------------------------------------------------ */
+.deck-progress {
+  position: fixed;
+  inset: auto 0 0;
+  height: 3px;
+  background-color: var(--surface-2);
+}
+
+.deck-progress > span {
+  display: block;
+  height: 100%;
+  background-image: var(--grad-main);
+  transition: width 0.4s ease;
+}
+
+.deck-hud {
+  position: fixed;
+  right: 16px;
+  bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background-color: var(--surface);
+  color: var(--text-muted);
+  font-size: 13px;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.deck-hud:hover,
+.deck-hud:focus-within {
+  opacity: 1;
+}
+
+.deck-hud-counter {
+  min-width: 56px;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.deck-hud-sep {
+  width: 1px;
+  height: 18px;
+  background-color: var(--border);
+}
+
+.deck-hud-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  color: var(--text-muted);
+}
+
+.deck-hud-button:hover {
+  background-color: var(--surface-2);
+  color: var(--text);
+}
+
+/* ------------------------------------------------------------------ */
+/* Presenter view                                                      */
+/* ------------------------------------------------------------------ */
+.deck[data-view="presenter"] {
+  display: grid;
+  grid-template-columns: minmax(0, 1.75fr) minmax(0, 1fr);
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  grid-template-areas:
+    "current next"
+    "current notes"
+    "bar bar";
+  gap: 16px;
+  padding: 16px;
+  background-color: var(--surface-2);
+}
+
+.deck[data-view="presenter"] .deck-track {
+  display: contents;
+}
+
+.deck[data-view="presenter"] .slide {
+  position: relative;
+  inset: auto;
+  aspect-ratio: 16 / 9;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+.deck[data-view="presenter"] .slide[data-state="active"] {
+  grid-area: current;
+  align-self: start;
+  animation: none;
+}
+
+.deck[data-view="presenter"] .slide[data-state="next"] {
+  grid-area: next;
+  display: block;
+  opacity: 0.85;
+}
+
+.deck[data-view="presenter"][data-blank] .slide[data-state="active"] {
+  visibility: visible;
+  outline: 3px dashed var(--text-muted);
+  outline-offset: 2px;
+}
+
+.presenter-notes {
+  grid-area: notes;
+  overflow-y: auto;
+  padding: 20px 24px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background-color: var(--surface);
+}
+
+.presenter-notes-body {
+  display: grid;
+  gap: 0.75em;
+  font-size: 17px;
+  line-height: 1.55;
+}
+
+.presenter-notes-body ul {
+  display: grid;
+  gap: 0.35em;
+  padding-left: 1.2em;
+  list-style: none;
+}
+
+.presenter-notes-body strong {
+  color: var(--link);
+}
+
+.presenter-bar {
+  grid-area: bar;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 24px;
+  flex-wrap: wrap;
+  padding: 10px 16px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background-color: var(--surface);
+}
+
+.presenter-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 36px;
+  padding: 0 12px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.presenter-button:hover {
+  background-color: var(--surface-2);
+}
+
+.presenter-button[aria-pressed="true"] {
+  background-color: var(--primary);
+  border-color: var(--primary);
+  color: var(--on-primary);
+}
+
+.presenter-clock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 12px;
+  padding: 2px 12px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slide[data-state="active"] {
+    animation: none;
+  }
+  .slide [data-step] {
+    translate: 0 0;
+  }
+}
