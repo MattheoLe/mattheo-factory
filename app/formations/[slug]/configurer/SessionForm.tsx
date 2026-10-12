@@ -15,7 +15,14 @@ import {
   type Level,
 } from "@/lib/session";
 
-type ModuleInfo = { id: string; title: string; duration: number; levels: Level[] | null; kind: string };
+type ModuleInfo = {
+  id: string;
+  title: string;
+  duration: number;
+  durations: Partial<Record<Format, number>>;
+  levels: Level[] | null;
+  kind: string;
+};
 
 type SessionFormProps = {
   slug: string;
@@ -37,15 +44,31 @@ export function SessionForm({ slug, levels, audiences, formats, modules }: Sessi
   const [audience, setAudience] = useState<Audience | null>(initial.audience);
   const [format, setFormat] = useState<Format>(initial.format);
   const [copied, setCopied] = useState(false);
+  // Sequences unticked by the trainer (kept across format changes).
+  const [skipped, setSkipped] = useState<string[]>(() =>
+    initial.modules ? (formats[initial.format] ?? []).filter((id) => !initial.modules?.includes(id)) : [],
+  );
 
-  const search = sessionSearch({ level, audience, format });
-  const sessionHref = `/formations/${slug}/session?${search}`;
-
-  const included = useMemo(() => {
+  const available = useMemo(() => {
     const ids = formats[format] ?? [];
     return modules.filter((module) => ids.includes(module.id) && (!module.levels || module.levels.includes(level)));
   }, [formats, format, modules, level]);
-  const total = included.reduce((sum, module) => sum + module.duration, 0);
+  const included = available.filter((module) => !skipped.includes(module.id));
+  const durationOf = (module: ModuleInfo) => module.durations[format] ?? module.duration;
+  const total = included.reduce((sum, module) => sum + durationOf(module), 0);
+
+  const formatIds = formats[format] ?? [];
+  const hasSkipped = formatIds.some((id) => skipped.includes(id));
+  const search = sessionSearch({
+    level,
+    audience,
+    format,
+    modules: hasSkipped ? formatIds.filter((id) => !skipped.includes(id)) : null,
+  });
+  const sessionHref = `/formations/${slug}/session?${search}`;
+
+  const toggle = (id: string) =>
+    setSkipped((list) => (list.includes(id) ? list.filter((item) => item !== id) : [...list, id]));
 
   async function copyLink() {
     await navigator.clipboard.writeText(new URL(sessionHref, window.location.origin).toString());
@@ -163,14 +186,30 @@ export function SessionForm({ slug, levels, audiences, formats, modules }: Sessi
           </p>
         </div>
         <ol className="grid gap-1">
-          {included.map((module) => (
-            <li key={module.id} className="flex items-baseline gap-3 rounded-lg px-2 py-1.5 hover:bg-surface-2">
-              <span className="font-mono text-xs text-text-muted">{module.id}</span>
-              <span className="flex-1">{module.title}</span>
-              <span className="text-sm tabular-nums text-text-muted">{module.duration} min</span>
-            </li>
-          ))}
+          {available.map((module) => {
+            const checked = !skipped.includes(module.id);
+            return (
+              <li key={module.id}>
+                <label
+                  className={`flex cursor-pointer items-center gap-3 rounded-lg px-2 py-1.5 hover:bg-surface-2 ${
+                    checked ? "" : "text-text-muted line-through"
+                  }`}
+                >
+                  <input
+                    type="checkbox"
+                    checked={checked}
+                    onChange={() => toggle(module.id)}
+                    className="size-4 accent-primary"
+                  />
+                  <span className="font-mono text-xs text-text-muted no-underline">{module.id}</span>
+                  <span className="flex-1">{module.title}</span>
+                  <span className="text-sm tabular-nums text-text-muted">{durationOf(module)} min</span>
+                </label>
+              </li>
+            );
+          })}
         </ol>
+        <p className="mt-3 text-xs text-text-muted">Décochez une séquence pour la retirer de cette session.</p>
         <p className="mt-6 border-t border-border pt-4 text-sm text-text-muted">
           En session : <kbd>→</kbd> / <kbd>espace</kbd> avancer · <kbd>←</kbd> reculer · <kbd>P</kbd> vue présentateur ·{" "}
           <kbd>F</kbd> plein écran · <kbd>T</kbd> thème · <kbd>B</kbd> masquer l&apos;écran · <kbd>Échap</kbd> revenir ici

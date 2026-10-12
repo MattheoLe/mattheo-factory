@@ -35,6 +35,8 @@ const modules = defineCollection({
       kind,
       /** Minutes for the reference format (2h) */
       duration: s.number(),
+      /** Per-format overrides of `duration` */
+      durations: s.record(format, s.number()).optional(),
       /** Levels where the module is shown; all levels when omitted */
       levels: s.array(level).optional(),
       path: s.path(),

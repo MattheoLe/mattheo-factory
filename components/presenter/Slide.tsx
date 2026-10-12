@@ -5,7 +5,7 @@ export type SlideLayout = "default" | "title" | "section" | "statement" | "cente
 
 type SlideProps = {
   layout?: SlideLayout;
-  /** Kicker shown above the content (section label). */
+  /** Kicker shown above the content. Section slides without kicker are numbered automatically. */
   kicker?: string;
   children: ReactNode;
 };
@@ -16,7 +16,11 @@ export function Slide({ layout = "default", kicker, children }: SlideProps) {
     <section data-slide="" data-layout={layout} className="slide" aria-roledescription="slide">
       <SlideDecor layout={layout} />
       <div className="slide-body">
-        {kicker && <p className="s-kicker">{kicker}</p>}
+        {kicker ? (
+          <p className="s-kicker">{kicker}</p>
+        ) : (
+          layout === "section" && <p className="s-kicker" data-auto-number="" />
+        )}
         {children}
       </div>
       <footer className="slide-footer" aria-hidden="true">

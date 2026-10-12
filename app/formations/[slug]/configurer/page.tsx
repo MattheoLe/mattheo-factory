@@ -32,10 +32,11 @@ async function Configure({ params }: { params: Params }) {
   const formation = getFormation(slug);
   if (!formation) notFound();
 
-  const modules = getModules(slug).map(({ id, title, duration, levels, kind }) => ({
+  const modules = getModules(slug).map(({ id, title, duration, durations, levels, kind }) => ({
     id,
     title,
     duration,
+    durations: durations ?? {},
     levels: levels ?? null,
     kind,
   }));

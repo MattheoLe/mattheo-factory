@@ -149,6 +149,11 @@ export function Deck({ deckId, title, formats, children }: DeckProps) {
       });
     });
 
+    // Section numbers follow the sequences actually shown in this session.
+    trackRef.current?.querySelectorAll("[data-auto-number]").forEach((element, index) => {
+      element.textContent = String(index + 1).padStart(2, "0");
+    });
+
     const notes = slides[current]?.querySelector("[data-notes]");
     if (notesRef.current) {
       notesRef.current.replaceChildren(...(notes ? Array.from(notes.cloneNode(true).childNodes) : []));
