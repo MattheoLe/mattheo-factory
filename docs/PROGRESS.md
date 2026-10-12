@@ -26,6 +26,7 @@ _Dernière mise à jour : 12/10/2026_
   - [x] Cours en MDX, notes de l'orateur, quiz final de 10 questions
 - **Itération 1 sur le pilote** (retours du formateur)
   - [x] IA / ML / DL / IA générative / IA agentique ; animation des vecteurs (roi − homme + femme ≈ reine, dézoom)
+  - [x] Vecteurs en **3D plein écran et interactifs** : arrivée en plongée, 4 temps de caméra, rotation à la souris, zoom molette, vol vers un mot, 2e analogie Paris − France + Italie ≈ Rome
   - [x] Multimodalité, exemples en images, démos texte / image / vidéo
   - [x] Nouvelle séquence « Ce qu'elle rend possible » (santé, science, accessibilité)
   - [x] Nouvelle séquence « Prévention » (énergie, coûts cachés, 3 arnaques réelles, loi SREN)

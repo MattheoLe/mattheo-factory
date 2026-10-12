@@ -3,6 +3,7 @@ import { Audience } from "@/components/adapt/Audience";
 import { Level } from "@/components/adapt/Level";
 import { SignalDot, Tag, TechStar } from "@/components/brand";
 import { Embeddings } from "@/components/diagrams/Embeddings";
+import { Embeddings3D } from "@/components/diagrams/Embeddings3D";
 import { Hub } from "@/components/diagrams/Hub";
 import { NextWord } from "@/components/diagrams/NextWord";
 import { Pipeline } from "@/components/diagrams/Pipeline";
@@ -52,6 +53,7 @@ export const mdxComponents = {
   Media,
   ScamCard,
   Embeddings,
+  Embeddings3D,
   Hub,
   NextWord,
   Rings,

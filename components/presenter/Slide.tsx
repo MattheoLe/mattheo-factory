@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import { Arc, DottedArc, Grid, Halo, Lines, TechStar } from "@/components/brand";
 
-export type SlideLayout = "default" | "title" | "section" | "statement" | "center";
+export type SlideLayout = "default" | "title" | "section" | "statement" | "center" | "full";
 
 type SlideProps = {
   layout?: SlideLayout;

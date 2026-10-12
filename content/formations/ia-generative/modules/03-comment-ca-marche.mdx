@@ -67,18 +67,18 @@ C'est pour ça que la réponse **s'affiche petit à petit** à l'écran : elle e
 
 </Slide>
 
-<Slide kicker="Le sens des mots">
+<Slide layout="full" kicker="Le sens des mots">
 
-<Embeddings />
+<Embeddings3D />
 
 <Notes>
 
-**Le moment « waouh » (4 min).** 4 temps, une touche à chaque fois :
+**Le moment « waouh » (4 min), en plein écran et en 3D.** À l'arrivée sur la slide, la caméra plonge depuis l'espace jusqu'au mot « roi ». Puis 3 temps, une touche à chaque fois. **Interactif** : glisser pour faire tourner, molette pour zoomer, clic sur un mot pour voler jusqu'à lui (re-clic pour revenir).
 
 1. **Zoom sur « roi »** : pour la machine, un mot n'est pas des lettres, c'est **une liste de nombres** (un vecteur) = une adresse sur une immense carte. Les nombres affichés sont illustratifs.
 2. **Les voisins apparaissent** : reine, prince, royaume, couronne… La machine a appris, en lisant des milliards de phrases, que ces mots apparaissent dans les mêmes contextes. **Proches dans le texte = proches sur la carte.**
 3. **La flèche** : passer de « homme » à « femme », c'est le même déplacement que passer de « roi » à « reine ». Le sens devient une **direction** : on peut calculer *roi − homme + femme ≈ reine*. Exemple historique (Word2vec, Google, 2013).
-4. **Dézoom** : d'autres familles de mots apparaissent (animaux, cuisine, technologie, émotions). Toute la langue devient une carte.
+4. **Dézoom** : d'autres familles de mots apparaissent (animaux, cuisine, technologie, émotions, pays). Deuxième analogie : *Paris − France + Italie ≈ Rome*. Laisser tourner, inviter la salle à proposer un mot à aller « visiter ».
 
 Nuance : la vraie carte a **des centaines, voire des milliers de dimensions** ; on l'aplatit ici sur 2 pour la rendre visible. C'est sur cette carte que l'IA « navigue » pour prédire le mot suivant.
 

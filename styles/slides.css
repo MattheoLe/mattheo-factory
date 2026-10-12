@@ -1112,3 +1112,129 @@
   border-radius: 0.4cqw;
   background-color: var(--bg);
 }
+
+/* Embeddings 3D (full-screen slide) ---------------------------------------- */
+.slide[data-layout="full"] .slide-body {
+  padding: 0;
+}
+
+.slide[data-layout="full"] .slide-body > .s-kicker {
+  position: absolute;
+  top: 3.6cqw;
+  left: 5cqw;
+  z-index: 3;
+}
+
+.emb3d {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background-image: radial-gradient(ellipse at center, var(--surface) 0%, var(--bg) 70%);
+  touch-action: none;
+}
+
+.emb3d-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  cursor: grab;
+}
+
+.emb3d-canvas:active {
+  cursor: grabbing;
+}
+
+.emb3d-labels {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.emb3d-word,
+.emb3d-cluster,
+.emb3d-numbers {
+  position: absolute;
+  top: 0;
+  left: 0;
+  white-space: nowrap;
+  will-change: transform, opacity;
+}
+
+.emb3d-word {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.emb3d-word[data-strong],
+.emb3d-word[data-key] {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.emb3d-word:hover {
+  color: var(--link);
+}
+
+.emb3d-cluster {
+  font-weight: 600;
+  font-size: 1cqw;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.emb3d-numbers {
+  font-family: ui-monospace, monospace;
+  font-size: 1.2cqw;
+  color: var(--text-muted);
+  transition: opacity 0.5s ease;
+}
+
+.emb3d-caption {
+  position: absolute;
+  left: 5cqw;
+  right: 5cqw;
+  bottom: 5cqw;
+  z-index: 3;
+  display: grid;
+  gap: 0.6cqw;
+  pointer-events: none;
+}
+
+.emb3d-caption p:first-child {
+  max-width: 60%;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 2.4cqw;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.emb3d-hint {
+  font-size: 1.05cqw;
+  color: var(--text-muted);
+}
+
+.emb3d-step {
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+
+.slide[data-layout="full"] .slide-footer {
+  z-index: 3;
+}
+
+.emb3d::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  z-index: 2;
+  height: 30%;
+  background-image: linear-gradient(to top, var(--bg) 15%, transparent);
+  pointer-events: none;
+}
