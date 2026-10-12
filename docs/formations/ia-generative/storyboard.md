@@ -40,7 +40,7 @@ Ces 4 points sont aussi les **4 piliers du récap** de fin (section 3, étape 8)
 | 7 | **Bien l'utiliser** | Donner la posture : esprit critique, vérifier, ne pas dépendre | Quelques règles simples | |
 | 8 | **Récap** | Rappeler les 4 piliers du message clé | Slide de synthèse | |
 | 9 | **Miroir** | Comparer avec l'accroche : les préjugés ont-ils bougé ? | Baromètre reposé, réponses du début réaffichées | |
-| 10 | **Ouverture** | Finir sur une perspective | *À définir* (section 5) | |
+| 10 | **Ouverture** ✅ | Passer à l'action, puis élargir à la technologie en général | **Mise en action** (« un usage à tester cette semaine ») + **question d'ouverture** sur la technologie (formulation à choisir, section 5) | |
 | 11 | **Quiz final** | Vérifier ce qui est retenu | ~10 questions | Questions adaptées au niveau |
 | 12 | **Avis global** | Recueillir le ressenti | Note et/ou un mot | |
 
@@ -53,7 +53,7 @@ Ces 4 points sont aussi les **4 piliers du récap** de fin (section 3, étape 8)
 ## 5. Points ouverts
 
 - **Téléphones** : le formateur veut que le quiz et l'avis global fonctionnent aussi **depuis les téléphones**. Le vote en direct est **exclu de la v1** (PRD §3, ADR-001). → Décision à prendre, voir les options dans le fil de discussion, puis nouvelle version du PRD.
-- **Ouverture** (étape 10) : direction à choisir.
+- **Ouverture** (étape 10) : direction ✅ (mise en action + question sur la technologie). Restent à choisir la formulation de la question et sa place (avant le quiz, ou tout à la fin après l'avis).
 - **Noter les réponses du début** pour l'effet miroir : à confirmer.
 - **Mode présentateur avec notes de l'orateur** : à confirmer (changement de périmètre → PRD v0.2).
 - **Durées par séquence** pour tenir 2h : à caler une fois le fil validé.
