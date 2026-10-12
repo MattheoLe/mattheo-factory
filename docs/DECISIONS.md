@@ -4,7 +4,7 @@ Format : contexte → décision → conséquences. On ajoute, on ne réécrit pa
 
 ---
 
-## ADR-001 — Site statique, sans comptes (v1)
+## ADR-001 — Site statique, sans comptes (v1) — *Amendée par ADR-010*
 **Contexte** : les formations sont animées par le formateur. Le site est un support, pas une plateforme e-learning.
 **Décision** : aucun compte, aucun backend, aucune base de données en v1.
 **Conséquences** : hébergement simple et gratuit, pas de RGPD lourd. Le suivi des participants et le vote en direct devront attendre une v2 avec backend.
@@ -55,3 +55,17 @@ Format : contexte → décision → conséquences. On ajoute, on ne réécrit pa
 - Les réglages par défaut de `create-next-app` 16.4 sont conservés : `cacheComponents` et `partialPrefetching` activés, ESLint en flat config lancé via `eslint` (`next lint` n'existe plus en Next 16). `noUncheckedIndexedAccess` est activé en plus de `strict`.
 - `prefers-reduced-motion` : garde globale CSS dans `globals.css` (Motion `useReducedMotion` viendra avec Motion).
 **Conséquences** : dépendances minimales ; `cacheComponents` impose d'envelopper toute lecture dynamique (`useSearchParams` de la page session) dans `<Suspense>`, ce que prévoyait déjà TECH.md.
+
+## ADR-010 — Quiz et avis bimodes, vote par téléphone en v1.1
+**Contexte** : le formateur veut que le quiz final et l'avis global fonctionnent avec **et** sans téléphone. ADR-001 exclut tout backend en v1.
+**Décision** :
+- Les composants d'interaction (`Quiz`, `Poll`/avis, baromètre) ont deux modes dès leur conception : **« salle »** (main levée ou réponse orale, révélation par le formateur) et **« téléphone »**.
+- v1 : seul le mode « salle » est actif. L'avis global peut passer par un QR code vers un formulaire externe.
+- v1.1 (juste après le pilote) : mode « téléphone » via un **service temps réel hébergé** (choix du service dans un ADR dédié : Supabase, Firebase, PartyKit…), votes **anonymes**, page de vote mobile à la DA du site, résultats animés dans les slides.
+- Le site reste statique : aucun serveur propre, le service hébergé est le seul composant dynamique. ADR-001 reste valable pour les comptes (aucun compte participant).
+**Conséquences** : l'API des composants doit prévoir une source de réponses interchangeable (saisie formateur ou flux temps réel). Le mode « salle » sert de solution de repli si le réseau tombe.
+
+## ADR-011 — Pilote d'abord, catalogue ensuite
+**Contexte** : le cœur du produit est le support de présentation. Le formateur veut construire un premier cours en profondeur, qui servira de modèle aux autres.
+**Décision** : formation pilote = `ia-generative`. Ordre des phases : conception du cours (storyboard + modèle de contenu) → moteur de présentation et composants → rédaction MDX du pilote + configurateur → catalogue et fiches des autres formations. MDX + Velite est confirmé (ADR-005).
+**Conséquences** : les composants sont tirés d'un vrai cours. Le catalogue public arrive plus tard.
