@@ -1,1 +1,122 @@
 @import "tailwindcss";
+@import "../styles/tokens.css";
+
+/*
+ * Tailwind only knows our tokens: the default palette and default shadows
+ * (which embed raw colors) are wiped, then semantic tokens are mapped.
+ */
+@theme inline {
+  --color-*: initial;
+  --shadow-*: initial;
+  --inset-shadow-*: initial;
+  --drop-shadow-*: initial;
+  --text-shadow-*: initial;
+
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-border: var(--border);
+  --color-text: var(--text);
+  --color-text-muted: var(--text-muted);
+  --color-primary: var(--primary);
+  --color-primary-soft: var(--primary-soft);
+  --color-accent: var(--accent);
+  --color-link: var(--link);
+  --color-on-primary: var(--on-primary);
+  --color-on-accent: var(--on-accent);
+
+  --color-brand-night: var(--c-night);
+  --color-brand-white: var(--c-white);
+  --color-brand-cobalt: var(--c-cobalt);
+  --color-brand-cyan: var(--c-cyan);
+  --color-brand-orange: var(--c-orange);
+  --color-brand-frost: var(--c-frost);
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Non-color design constants (DA.md §4) */
+@theme {
+  --radius-card: 20px;
+  --radius-pill: 999px;
+}
+
+/* Gradients as utilities (no arbitrary values in markup) */
+@utility bg-grad-main {
+  background-image: var(--grad-main);
+}
+@utility bg-grad-deep {
+  background-image: var(--grad-deep);
+}
+@utility bg-grad-signal {
+  background-image: var(--grad-signal);
+}
+@utility text-grad-main {
+  background-image: var(--grad-main);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* Typography roles (DA.md §2) */
+@utility type-display {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 0.95;
+}
+@utility type-subtitle {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+}
+@utility type-eyebrow {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 0.75rem;
+  letter-spacing: 0.25em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+@layer base {
+  html {
+    background-color: var(--bg);
+  }
+
+  body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a {
+    color: var(--link);
+  }
+
+  /* Visible focus in both themes: inner --text ring + outer orange ring (ADR-008) */
+  :focus-visible {
+    outline: 2px solid var(--focus-outer);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 2px var(--focus-inner);
+  }
+
+  ::selection {
+    background-color: var(--primary);
+    color: var(--on-primary);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

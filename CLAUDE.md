@@ -14,7 +14,7 @@ Site vitrine + support de présentation pour des formations animées en présent
 7. `docs/DECISIONS.md` — décisions déjà prises (ne pas les rediscuter sans raison)
 
 ## Règles non négociables
-- **Jamais de couleur en dur.** Toujours les tokens CSS définis dans `DA.md` (`var(--color-...)`).
+- **Jamais de couleur en dur.** Toujours les tokens CSS définis dans `DA.md` et `styles/tokens.css` (`var(--bg)`, `var(--text)`…), ou les classes Tailwind qui y sont mappées (`bg-surface`, `text-text-muted`…). Voir ADR-007.
 - **Light ET dark** : chaque composant est vérifié dans les deux modes avant d'être considéré terminé.
 - **Contraste** : respecter les règles de contraste de `DA.md` (pas de texte orange ou cyan sur fond clair).
 - **Orange avec parcimonie** : ponctuation, focus, CTA. Jamais en aplat large.

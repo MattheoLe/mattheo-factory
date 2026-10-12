@@ -1,0 +1,92 @@
+/*
+ * Design tokens — single source of truth for every color in the project.
+ * Mirrors docs/DA.md. No color value may appear anywhere else in the codebase.
+ * Values marked (derived) are not on the reference boards; see DA.md and ADR-007.
+ */
+
+/* ------------------------------------------------------------------ */
+/* 1. Brand palette (theme-independent)                                */
+/* ------------------------------------------------------------------ */
+:root {
+  --c-night: #0b0f14; /* Nuit profonde */
+  --c-white: #f7f8fa; /* Blanc cassé */
+  --c-cobalt: #0057ff; /* Bleu cobalt */
+  --c-cyan: #7dd3fc; /* Cyan doux */
+  --c-orange: #ff6b00; /* Orange signal */
+  --c-frost: #cbd5e1; /* Gris froid */
+}
+
+/* ------------------------------------------------------------------ */
+/* 2. Semantic tokens — light                                          */
+/* ------------------------------------------------------------------ */
+:root,
+[data-theme="light"] {
+  color-scheme: light;
+
+  --bg: var(--c-white);
+  --surface: #ffffff; /* (derived) cards */
+  --surface-2: #eef2f7; /* (derived) secondary areas */
+  --border: var(--c-frost);
+  --text: var(--c-night);
+  --text-muted: #5b6675; /* (derived) AA on --bg */
+  --primary: var(--c-cobalt);
+  --primary-soft: var(--c-cyan);
+  --accent: var(--c-orange);
+  --link: var(--c-cobalt);
+  --on-primary: var(--c-white); /* (derived) text on cobalt, ~5.2:1 */
+  --on-accent: var(--c-night); /* (derived) text on orange, ~6.7:1 */
+
+  --grad-main: linear-gradient(135deg, var(--c-cobalt) 0%, var(--c-cyan) 100%);
+  --grad-deep: linear-gradient(135deg, var(--c-night) 0%, var(--c-cobalt) 100%); /* (derived) same as dark, ADR-007 */
+  --grad-signal: linear-gradient(90deg, var(--c-cobalt) 0%, var(--c-cyan) 55%, var(--c-orange) 100%); /* (derived) same as dark */
+  --halo: radial-gradient(circle, rgba(0, 87, 255, 0.35) 0%, rgba(125, 211, 252, 0.15) 45%, transparent 70%);
+
+  /* Asset tokens (derived) */
+  --star: var(--c-cobalt);
+  --line-1: var(--c-cobalt);
+  --line-2: var(--c-cyan);
+  --grid-line: rgba(0, 87, 255, 0.08);
+  --dot-matrix: rgba(11, 15, 20, 0.22);
+  --signal-glow: rgba(255, 107, 0, 0.45);
+  --texture-opacity: 0.06;
+
+  /* Focus: inner ring in --text, outer ring in --accent (ADR-008) */
+  --focus-inner: var(--c-night);
+  --focus-outer: var(--c-orange);
+}
+
+/* ------------------------------------------------------------------ */
+/* 3. Semantic tokens — dark                                           */
+/* ------------------------------------------------------------------ */
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  --bg: var(--c-night);
+  --surface: #111823; /* (derived) */
+  --surface-2: #172131; /* (derived) */
+  --border: rgba(203, 213, 225, 0.14);
+  --text: var(--c-white);
+  --text-muted: var(--c-frost);
+  --primary: var(--c-cobalt);
+  --primary-soft: var(--c-cyan);
+  --accent: var(--c-orange);
+  --link: var(--c-cyan); /* cobalt too dark for body text on night */
+  --on-primary: var(--c-white);
+  --on-accent: var(--c-night);
+
+  --grad-main: linear-gradient(135deg, var(--c-cobalt) 0%, var(--c-cyan) 100%);
+  --grad-deep: linear-gradient(135deg, var(--c-night) 0%, var(--c-cobalt) 100%);
+  --grad-signal: linear-gradient(90deg, var(--c-cobalt) 0%, var(--c-cyan) 55%, var(--c-orange) 100%);
+  --halo: radial-gradient(circle, rgba(0, 87, 255, 0.55) 0%, rgba(0, 87, 255, 0.15) 40%, transparent 70%);
+
+  --star: var(--c-cyan);
+  --line-1: var(--c-cobalt);
+  --line-2: var(--c-cyan);
+  --grid-line: rgba(203, 213, 225, 0.07);
+  --dot-matrix: rgba(203, 213, 225, 0.3);
+  --signal-glow: rgba(255, 107, 0, 0.6);
+  --texture-opacity: 0.08;
+
+  --focus-inner: var(--c-white);
+  --focus-outer: var(--c-orange);
+}
