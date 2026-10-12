@@ -1,10 +1,13 @@
 ---
 title: Comment ça marche
 kind: core
-duration: 15
+duration: 14
+durations:
+  1h: 10
+  demi-journee: 20
 ---
 
-<Slide layout="section" kicker="02">
+<Slide layout="section">
 
 <p className="s-title-xl">Comment<br />ça marche ?</p>
 
@@ -59,6 +62,27 @@ Tout le reste en découle : ce qu'elle fait bien (écrire de façon fluide) et c
 <Notes>
 
 C'est pour ça que la réponse **s'affiche petit à petit** à l'écran : elle est littéralement fabriquée morceau par morceau.
+
+</Notes>
+
+</Slide>
+
+<Slide kicker="Le sens des mots">
+
+<Embeddings />
+
+<Notes>
+
+**Le moment « waouh » (4 min).** 4 temps, une touche à chaque fois :
+
+1. **Zoom sur « roi »** : pour la machine, un mot n'est pas des lettres, c'est **une liste de nombres** (un vecteur) = une adresse sur une immense carte. Les nombres affichés sont illustratifs.
+2. **Les voisins apparaissent** : reine, prince, royaume, couronne… La machine a appris, en lisant des milliards de phrases, que ces mots apparaissent dans les mêmes contextes. **Proches dans le texte = proches sur la carte.**
+3. **La flèche** : passer de « homme » à « femme », c'est le même déplacement que passer de « roi » à « reine ». Le sens devient une **direction** : on peut calculer *roi − homme + femme ≈ reine*. Exemple historique (Word2vec, Google, 2013).
+4. **Dézoom** : d'autres familles de mots apparaissent (animaux, cuisine, technologie, émotions). Toute la langue devient une carte.
+
+Nuance : la vraie carte a **des centaines, voire des milliers de dimensions** ; on l'aplatit ici sur 2 pour la rendre visible. C'est sur cette carte que l'IA « navigue » pour prédire le mot suivant.
+
+**Expert** : parler d'*embeddings*, de similarité cosinus, et du fait que les biais se lisent aussi dans ces directions (ex. métiers associés à un genre).
 
 </Notes>
 

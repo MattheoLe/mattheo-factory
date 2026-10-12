@@ -1,22 +1,24 @@
 ---
 title: C'est quoi, l'IA ?
 kind: core
-duration: 12
-levels: [decouverte, intermediaire]
+duration: 8
+durations:
+  demi-journee: 12
 ---
 
-<Slide layout="section" kicker="01">
+<Slide layout="section">
 
 <p className="s-title-xl">C'est quoi,<br />l'IA ?</p>
 
 <Notes>
 
-Séquence complète en **découverte**, simple rappel en **intermédiaire** (certaines slides sont masquées), absente en **expert**.
+Séquence complète en **découverte**, plus rapide en **intermédiaire**, simple rappel des familles en **expert** (les slides d'introduction sont masquées).
 
 </Notes>
 
 </Slide>
 
+<Level not="expert">
 <Slide kicker="Question à la salle">
 
 # Où avez-vous croisé de l'IA aujourd'hui ?
@@ -40,6 +42,7 @@ Message : **vous utilisez déjà l'IA tous les jours, sans le savoir.** Elle n'e
 </Notes>
 
 </Slide>
+</Level>
 
 <Level is="decouverte">
 <Slide kicker="Définition">
@@ -64,21 +67,65 @@ Image utile : apprendre à reconnaître un chat. On ne décrit pas « quatre pat
 
 <Slide kicker="Les familles de l'IA">
 
-# L'IA générative n'est qu'une petite partie de l'IA
+# Des poupées russes
 
 <Rings rings={[
   { label: "Intelligence artificielle", hint: "Tout programme qui imite une capacité humaine" },
-  { label: "Apprentissage automatique", hint: "Elle apprend à partir d'exemples" },
-  { label: "Apprentissage profond", hint: "Avec des réseaux de neurones artificiels, très grands" },
-  { label: "IA générative", hint: "Elle crée du contenu nouveau : texte, image, son, vidéo, code" }
+  { label: "Machine learning", hint: "Apprentissage automatique : elle apprend à partir d'exemples" },
+  { label: "Deep learning", hint: "Apprentissage profond : de très grands réseaux de neurones artificiels" },
+  { label: "IA générative", hint: "Elle crée du contenu nouveau : texte, image, son, vidéo, code" },
+  { label: "IA agentique", hint: "Elle agit : elle planifie, utilise des outils et enchaîne les tâches" }
 ]} />
 
 <Notes>
 
 Révéler les cercles un par un, de l'extérieur vers l'intérieur.
 
-- On dit « IA » pour tout. Ce dont tout le monde parle depuis 2022, c'est **le cercle du centre**.
+- On dit « IA » pour tout. Ce dont tout le monde parle depuis 2022, ce sont **les deux cercles du centre**.
 - « Réseau de neurones » : simple inspiration biologique, ce n'est **pas** un cerveau.
+- L'IA agentique n'est pas une technologie à part : ce sont des IA génératives **à qui on donne des outils** (navigateur, agenda, fichiers…) et un objectif. Simplification assumée.
+
+</Notes>
+
+</Slide>
+
+<Slide kicker="En exemples">
+
+# Une famille, cinq façons de faire
+
+<Columns>
+  <Card title="IA" step>Le programme d'échecs qui suit des règles écrites par des humains.</Card>
+  <Card title="Machine learning" step>Prédire le prix d'un appartement, repérer un spam.</Card>
+  <Card title="Deep learning" step>Reconnaître un visage, transcrire votre voix.</Card>
+  <Card title="IA générative" step>Écrire un texte, créer une image, une musique.</Card>
+  <Card title="IA agentique" step signal>Organiser un voyage : chercher, comparer, réserver.</Card>
+</Columns>
+
+<Notes>
+
+Une carte par famille, avec un exemple du quotidien. Demander à la salle d'en trouver d'autres pour chaque famille.
+
+</Notes>
+
+</Slide>
+
+<Slide kicker="La nouvelle étape">
+
+# De la réponse… à l'action
+
+<Pipeline highlight={4} steps={[
+  { title: "Un objectif", text: "« Organise-moi un week-end à Lyon pour 2, budget 300 €. »" },
+  { title: "Un plan", text: "Elle découpe la mission en étapes." },
+  { title: "Des outils", text: "Elle cherche des trains, compare des hôtels, consulte la météo." },
+  { title: "Une vérification", text: "Elle contrôle le budget, corrige si besoin." },
+  { title: "Un résultat", text: "Un programme complet… à valider par vous." }
+]} />
+
+<Notes>
+
+**L'IA agentique** : une IA générative ne fait que répondre ; un agent **agit** en plusieurs étapes, avec des outils.
+
+Enjeu à souligner : plus on lui délègue d'actions (payer, envoyer, supprimer), plus **la validation humaine** devient importante. Lien avec le message clé : garder la main.
 
 </Notes>
 
@@ -103,6 +150,7 @@ Exemples d'IA génératives à citer : ChatGPT, Le Chat (Mistral, française), G
 </Slide>
 </Level>
 
+<Level not="expert">
 <Slide kicker="Un peu d'histoire">
 
 # L'IA n'est pas nouvelle
@@ -135,3 +183,4 @@ Comparaison qui parle : il avait fallu environ 9 mois à TikTok et plus de 2 ans
 </Notes>
 
 </Slide>
+</Level>

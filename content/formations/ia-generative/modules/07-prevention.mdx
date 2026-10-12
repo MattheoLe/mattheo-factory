@@ -1,0 +1,193 @@
+---
+title: "Prévention : coûts et arnaques"
+kind: core
+duration: 12
+durations:
+  1h: 8
+  demi-journee: 18
+---
+
+<Slide layout="section">
+
+<p className="s-title-xl">Prévention<span className="text-accent">.</span></p>
+
+<p className="s-subtitle">Ce qu'elle coûte, ce qu'elle permet aux escrocs</p>
+
+<Notes>
+
+L'autre plateau de la balance : **les coûts** (environnement, données, dépendance) et **les mauvais usages** (arnaques, deepfakes). Ton : lucide, pas anxiogène. Chaque risque est suivi d'un **réflexe**.
+
+</Notes>
+
+</Slide>
+
+<Slide kicker="Coût · Énergie">
+
+# L'IA a un coût physique
+
+<Columns>
+  <Stat value="1,5 %" label="de l'électricité mondiale consommée par les data centers en 2024 (415 TWh)." source="Agence internationale de l'énergie, Energy and AI, 2025" draft />
+  <Step><Stat value="× 2" label="d'ici 2030 : environ 945 TWh, un peu plus que toute la consommation du Japon aujourd'hui." source="Agence internationale de l'énergie, 2025" draft /></Step>
+</Columns>
+
+<Notes>
+
+L'IA est le **premier moteur** de cette croissance, selon l'AIE. Les data centers ne servent pas qu'à l'IA (vidéo, cloud, réseaux sociaux…).
+
+Ne pas culpabiliser : situer. Poser la question à la salle : **« est-ce que ça change votre façon de l'utiliser ? »**
+
+</Notes>
+
+</Slide>
+
+<Slide kicker="Coût · Une requête">
+
+# Et une seule question ?
+
+<Columns>
+  <Card title="Google · Gemini" step>Une requête texte médiane : 0,24 Wh et 0,26 mL d'eau, l'équivalent de moins de 9 secondes de télévision (août 2025).</Card>
+  <Card title="Mistral · Le Chat" step>Une réponse d'une page : environ 1,14 g de CO₂ et 45 mL d'eau, fabrication du matériel incluse (juillet 2025).</Card>
+  <Card title="Ce qu'il faut retenir" step signal>Une question coûte peu, mais des milliards par jour pèsent lourd. Une image ou une vidéo coûte bien plus qu'un texte.</Card>
+</Columns>
+
+<Notes>
+
+**Pourquoi deux chiffres si différents ?** Les méthodes ne sont pas les mêmes : Google compte l'usage d'un prompt médian ; Mistral fait une analyse de cycle de vie qui inclut la fabrication des machines. Excellent exemple pour dire : **un chiffre sans sa méthode ne veut pas dire grand-chose**.
+
+Et l'entraînement d'un grand modèle pèse lourd : pour Mistral Large 2, environ 20 000 tonnes de CO₂ sur 18 mois (même source).
+
+Sources **à valider** : rapport technique Google (août 2025), étude Mistral AI avec Carbone 4 et l'ADEME (juillet 2025).
+
+</Notes>
+
+</Slide>
+
+<Slide kicker="Les autres coûts">
+
+# Ce qui ne se voit pas
+
+<Columns>
+  <Card title="Vos données" step>Ce que vous tapez peut être conservé, et parfois servir à entraîner les modèles. Lisez les réglages.</Card>
+  <Card title="Votre esprit critique" step signal>À force de déléguer, on perd l'habitude de chercher, de rédiger, de douter.</Card>
+  <Card title="Le travail invisible" step>Des milliers de personnes trient et annotent les données, souvent mal payées.</Card>
+</Columns>
+
+<Notes>
+
+Le **coût cognitif** fait le lien avec le message clé : *ne pas en devenir dépendant*. Analogie du GPS : utile, mais on ne sait plus lire une carte.
+
+</Notes>
+
+</Slide>
+
+<Slide layout="title" kicker="Mauvais usages">
+
+<p className="s-title-xl">L'IA,<br />alliée des escrocs<span className="text-accent">.</span></p>
+
+<p className="s-lead">Trois arnaques bien réelles. Saurez-vous les repérer ?</p>
+
+<Notes>
+
+Pour chaque arnaque : **lire le message à voix haute**, demander « vous auriez cliqué ? », puis révéler les signaux d'alerte un par un, et enfin le réflexe.
+
+</Notes>
+
+</Slide>
+
+<Slide kicker="Arnaque n°1 · Le faux livreur">
+
+<ScamCard
+  channel="sms"
+  from="Colis-Service"
+  message="Bonjour, votre colis n'a pas pu être livré (adresse incomplète). Photo du colis dans notre véhicule ci-jointe. Frais de re-livraison : 1,99 €. Réglez sous 24 h ici : colis-relivraison.info"
+  flags={[
+    "Une photo « réaliste » de votre colis… générée par IA en quelques secondes",
+    "Un petit montant pour endormir la méfiance : c'est votre carte bancaire qui est visée",
+    "L'urgence (« sous 24 h ») et un lien qui n'est pas celui du transporteur"
+  ]}
+  reflex="ne jamais cliquer. Vérifier le suivi directement sur le site ou l'appli du transporteur."
+/>
+
+<Notes>
+
+Arnaque très répandue. L'IA la rend **plus crédible** : messages sans fautes, photo d'un carton « à votre nom » dans un camion, faux site identique au vrai.
+
+Rappel : on peut signaler ces SMS en les transférant au **33700** (service gratuit de signalement des spams en France).
+
+</Notes>
+
+</Slide>
+
+<Slide kicker="Arnaque n°2 · La voix clonée">
+
+<ScamCard
+  channel="appel"
+  from="Numéro inconnu"
+  message="« Maman, c'est moi… J'ai eu un accident, je n'ai plus mon téléphone. J'ai besoin que tu m'envoies de l'argent tout de suite, s'il te plaît, ne dis rien à papa. »"
+  flags={[
+    "La voix de votre proche, clonée à partir de quelques secondes d'enregistrement (vidéo, message vocal, appel)",
+    "Une émotion forte et une urgence pour vous empêcher de réfléchir",
+    "Un nouveau numéro, un moyen de paiement inhabituel, et le secret demandé"
+  ]}
+  reflex="raccrocher et rappeler soi-même la personne sur son numéro habituel. Convenir d'un mot de passe familial."
+/>
+
+<Notes>
+
+**Comment ils récupèrent votre voix** : vidéos publiques sur les réseaux sociaux, messages vocaux… ou des **appels où personne ne parle**, pour vous faire dire « Allô ? Oui ? ». Réflexe : face à un appel silencieux d'un numéro inconnu, raccrocher sans parler.
+
+Particulièrement important pour les publics **seniors** (les victimes) et **jeunes** (leur voix est en ligne).
+
+</Notes>
+
+</Slide>
+
+<Slide kicker="Arnaque n°3 · La visio truquée">
+
+<ScamCard
+  channel="visio"
+  from="Directeur financier (et 4 collègues)"
+  message="Une visioconférence avec le directeur financier et plusieurs collègues reconnaissables demande à un employé de réaliser en urgence des virements confidentiels."
+  flags={[
+    "Tous les participants étaient des deepfakes, fabriqués à partir de vidéos publiques",
+    "L'employé avait d'abord douté… la visio l'a rassuré",
+    "Résultat : environ 25 millions de dollars virés en 15 opérations (Arup, Hong Kong, 2024)"
+  ]}
+  reflex="pour toute demande inhabituelle d'argent, vérifier par un autre canal, avec une personne que vous joignez vous-même."
+/>
+
+<Notes>
+
+Cas réel : l'entreprise d'ingénierie **Arup**, bureau de Hong Kong, janvier 2024, confirmé par l'entreprise en mai 2024. Environ 200 millions de dollars de Hong Kong (≈ 25 M$).
+
+Message : **voir et entendre ne suffit plus**. Pour les publics **actifs, managers, dirigeants** : procédure de double validation des virements.
+
+</Notes>
+
+</Slide>
+
+<Slide kicker="Ce que dit la loi">
+
+# Un deepfake de quelqu'un, sans son accord, c'est puni
+
+<Columns>
+  <Card title="La règle" step>Diffuser un contenu généré par IA représentant une personne, sans son consentement et sans dire que c'est un trucage, est un délit.</Card>
+  <Card title="La sanction" step>Jusqu'à 1 an de prison et 15 000 € d'amende, 2 ans et 45 000 € si c'est diffusé en ligne.</Card>
+  <Card title="Les deepfakes sexuels" step signal>Punis plus lourdement, même s'ils sont présentés comme des trucages.</Card>
+</Columns>
+
+<Notes>
+
+France : **loi SREN du 21 mai 2024**, articles 226-8 et 226-8-1 du Code pénal. En Europe, l'**AI Act** impose aussi d'indiquer qu'un contenu a été généré par IA.
+
+⚠️ Montants **à vérifier sur Légifrance** avant la session.
+
+</Notes>
+
+</Slide>
+
+<Slide layout="statement">
+
+<p className="s-statement">Face au doute :<br />on s'arrête, on vérifie, on rappelle<span className="text-accent">.</span></p>
+
+</Slide>

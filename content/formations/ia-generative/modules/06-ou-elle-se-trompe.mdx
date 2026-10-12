@@ -1,10 +1,13 @@
 ---
 title: Où elle se trompe
 kind: core
-duration: 20
+duration: 15
+durations:
+  1h: 12
+  demi-journee: 20
 ---
 
-<Slide layout="section" kicker="04">
+<Slide layout="section">
 
 <p className="s-title-xl">Où elle<br />se trompe</p>
 
@@ -168,6 +171,44 @@ Qui suivent, indolents compagnons de voyage,<br />
 Le navire glissant sur les gouffres amers.
 </Excerpt>
 </Quiz>
+
+</Slide>
+
+<Slide kicker="Bonus · Et les photos ?">
+
+<Quiz question="Cette photo : réelle ou générée ?" options={["Photo réelle", "Générée par IA"]} answer={1} explanation="Générée. À vérifier : les mains et les doigts, le texte en arrière-plan, les reflets, les oreilles et les bijoux, les arrière-plans « trop parfaits ».">
+<Media alt="Portrait photoréaliste généré par IA (à préparer pendant la démo image, ou à choisir)" />
+</Quiz>
+
+<Notes>
+
+⚠️ **Image à fournir** : idéalement **deux** photos côte à côte (une réelle, une générée) ou une série de 3 à alterner d'une session à l'autre. Ajouter `src="/formations/ia-generative/…"` au composant `Media` et ajuster la bonne réponse.
+
+</Notes>
+
+</Slide>
+
+<Slide kicker="Quand le faux devient viral">
+
+# Ces images ont trompé des millions de personnes
+
+<Columns>
+  <Media alt="Le pape François en doudoune blanche (image Midjourney, mars 2023)" badge="Généré par IA" caption="Mars 2023 : le pape en doudoune de luxe. Partagée des millions de fois, crue par beaucoup." step />
+  <Media alt="Fausse photo d'une explosion près du Pentagone (mai 2023)" badge="Généré par IA" caption="Mai 2023 : une fausse explosion au Pentagone fait brièvement chuter la Bourse américaine." step />
+</Columns>
+
+<Notes>
+
+Deux cas réels, très documentés :
+
+- **Le pape en doudoune** (mars 2023) : créée avec Midjourney, son auteur l'a présentée comme une blague ; beaucoup l'ont prise pour une vraie photo.
+- **L'explosion du Pentagone** (22 mai 2023) : une image générée relayée par des comptes « certifiés » a provoqué une courte baisse des marchés avant d'être démentie.
+
+⚠️ **Images à fournir** (droits : utilisation pédagogique, à vérifier), sinon les décrire à l'oral.
+
+Message : **le faux circule plus vite que le démenti.**
+
+</Notes>
 
 </Slide>
 

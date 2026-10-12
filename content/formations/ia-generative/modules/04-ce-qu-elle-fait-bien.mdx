@@ -2,9 +2,11 @@
 title: Ce qu'elle fait bien
 kind: core
 duration: 12
+durations:
+  demi-journee: 25
 ---
 
-<Slide layout="section" kicker="03">
+<Slide layout="section">
 
 <p className="s-title-xl">Ce qu'elle<br />fait bien</p>
 
@@ -31,6 +33,55 @@ duration: 12
 Révéler carte par carte. Pour chacune, demander : « qui l'a déjà utilisée pour ça ? »
 
 Point commun : **tout ce qui est du langage**. C'est là qu'elle est la plus forte, parce que c'est ce qu'elle a appris.
+
+</Notes>
+
+</Slide>
+
+<Slide kicker="Multimodale">
+
+<Hub center="IA multimodale" items={[
+  { label: "Texte", hint: "écrire, résumer, traduire", icon: "texte" },
+  { label: "Image", hint: "créer, décrire une photo", icon: "image" },
+  { label: "Voix", hint: "dicter, converser, cloner", icon: "voix" },
+  { label: "Vidéo", hint: "générer un clip réaliste", icon: "video" },
+  { label: "Musique", hint: "composer une chanson", icon: "musique" },
+  { label: "Code", hint: "créer une appli, un site", icon: "code" }
+]} />
+
+<Notes>
+
+**Multimodale** = elle comprend et produit **plusieurs types de contenus**, et passe de l'un à l'autre.
+
+Exemples à citer, satellite par satellite :
+
+- photographier une ordonnance ou un panneau en langue étrangère → elle **lit et explique** ;
+- décrire une scène → elle **dessine** ;
+- parler à voix haute → elle **répond à l'oral**, avec une voix naturelle ;
+- une phrase → **un clip vidéo** de quelques secondes ;
+- quelques mots → **une chanson complète**, paroles et musique.
+
+Idée clé : la frontière entre texte, image, son et vidéo **disparaît**. C'est formidable… et c'est ce qui rend les faux si crédibles (séquences suivantes).
+
+</Notes>
+
+</Slide>
+
+<Slide kicker="En images">
+
+# De la photo… au texte, et inversement
+
+<Columns>
+  <Media alt="Photo d'un frigo entrouvert avec quelques ingrédients" caption="Photo → texte : « Que puis-je cuisiner avec ça ? » Elle reconnaît les ingrédients et propose une recette." step />
+  <Media alt="Image générée par IA : un chat astronaute dans le style d'une affiche des années 60" badge="Généré par IA" caption="Texte → image : « Un chat astronaute, affiche rétro années 60. »" step />
+  <Media alt="Photo d'un panneau ou d'un menu en japonais" caption="Photo → traduction : un menu, un panneau, une notice… compris instantanément." step />
+</Columns>
+
+<Notes>
+
+⚠️ **Images à fournir** : déposer les fichiers dans `public/formations/ia-generative/` puis ajouter `src="/formations/ia-generative/nom.jpg"` à chaque `Media`.
+
+Idéal : générer l'image du chat astronaute **pendant la démo** de la slide suivante et la montrer ici aux sessions suivantes.
 
 </Notes>
 
@@ -86,29 +137,67 @@ Point commun : **tout ce qui est du langage**. C'est là qu'elle est la plus for
 
 <Notes>
 
-Les exemples s'adaptent au public choisi pour la session. Idéal : en tirer **un** et le montrer en direct (slide suivante).
+Les exemples s'adaptent au public choisi pour la session. Idéal : en tirer **un** et le montrer en direct (slides suivantes).
 
 </Notes>
 
 </Slide>
 
-<Slide layout="title" kicker="En direct">
+<Slide layout="title" kicker="Démo 1 · En direct">
 
 <p className="s-title-xl">Demandons-lui<span className="text-accent">.</span></p>
 
+<p className="s-lead">Un texte, adapté à deux publics.</p>
+
 <Notes>
 
-**Démo live (5 min).** Ouvrir un assistant (ChatGPT, Le Chat, Claude…) sur un autre onglet.
-
-Script proposé :
+**Démo texte (3 min).** Ouvrir un assistant (ChatGPT, Le Chat, Claude, Gemini…) sur un autre onglet.
 
 1. « Explique-moi ce qu'est l'inflation comme si j'avais 10 ans. »
 2. Même question : « … comme à un économiste. » → elle adapte son niveau.
 3. Prendre une idée de la salle et lui demander 5 idées de titres.
 
-Montrer que **la qualité de la réponse dépend de la qualité de la demande** (on y revient séquence 6).
+Montrer que **la qualité de la réponse dépend de la qualité de la demande** (séquence « Bien l'utiliser »).
 
 Plan B si pas de réseau : décrire l'échange à l'oral.
+
+</Notes>
+
+</Slide>
+
+<Slide layout="title" kicker="Démo 2 · En direct">
+
+<p className="s-title-xl">Créons une image<span className="text-accent">.</span></p>
+
+<p className="s-lead">La salle choisit le sujet, le style et l'ambiance.</p>
+
+<Notes>
+
+**Démo image (3 min).** Faire proposer par la salle : **un sujet** (un animal, un lieu), **un style** (aquarelle, photo, BD, affiche rétro), **une ambiance** (au coucher du soleil, sous la pluie…).
+
+Outils possibles : l'assistant ChatGPT ou Gemini, Le Chat (Mistral), Midjourney, Adobe Firefly. Tester l'outil **avant** la session.
+
+Puis demander une modification (« ajoute un chapeau », « en noir et blanc ») : on **dialogue** avec l'image.
+
+Faire remarquer les défauts éventuels : mains, textes illisibles, reflets incohérents… indices utiles pour « Humain ou IA ? ».
+
+</Notes>
+
+</Slide>
+
+<Slide layout="title" kicker="Démo 3 · En direct">
+
+<p className="s-title-xl">Et maintenant,<br />une vidéo<span className="text-accent">.</span></p>
+
+<p className="s-lead">Quelques mots… quelques secondes de film.</p>
+
+<Notes>
+
+**Démo vidéo (3 min, ou vidéo préparée à l'avance si la génération est lente ou payante).** Outils possibles : Sora (OpenAI), Veo (Google), Runway, Kling. Vérifier l'accès et le coût avant la session.
+
+Prompt suggéré : « Un vieux phare breton dans la tempête, plan drone, lumière de fin de journée. »
+
+Message : en 2022, cela semblait impossible. Aujourd'hui, **une vidéo ne prouve plus rien à elle seule**.
 
 </Notes>
 
@@ -120,7 +209,7 @@ Plan B si pas de réseau : décrire l'échange à l'oral.
 
 <Notes>
 
-Transition vers la séquence suivante : « Mais si elle écrit si bien, pourquoi ne pas lui faire confiance ? »
+Transition : « Elle sait faire tout ça. Mais concrètement, qu'est-ce que ça change dans le monde ? »
 
 </Notes>
 
