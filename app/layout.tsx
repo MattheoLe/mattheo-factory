@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ThemeProvider } from "@/components/theme/ThemeProvider";
 import { inter, poppins } from "./fonts";
 import "./globals.css";
 
@@ -12,8 +13,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="fr" className={`${inter.variable} ${poppins.variable}`}>
-      <body className="min-h-dvh">{children}</body>
+    // suppressHydrationWarning: next-themes sets data-theme before hydration.
+    <html lang="fr" className={`${inter.variable} ${poppins.variable}`} suppressHydrationWarning>
+      <body className="min-h-dvh">
+        <ThemeProvider>{children}</ThemeProvider>
+      </body>
     </html>
   );
 }
