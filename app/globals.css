@@ -2,6 +2,7 @@
 @import "../styles/tokens.css";
 @import "../styles/deck.css";
 @import "../styles/slides.css";
+@import "../styles/catalogue.css";
 
 /*
  * Tailwind only knows our tokens: the default palette and default shadows

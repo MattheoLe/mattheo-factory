@@ -1,0 +1,810 @@
+/*
+ * Catalogue ("streaming" UX) and intro ident. Colors: tokens only.
+ * Posters and the billboard are cinematic surfaces rendered with dark tokens
+ * (data-theme="dark") in both themes; the page itself follows the theme.
+ */
+
+.catalogue {
+  min-height: 100dvh;
+  padding-bottom: 80px;
+}
+
+/* Header -------------------------------------------------------------- */
+.catalogue-header {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  padding: 14px clamp(16px, 4vw, 56px);
+  background-color: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(12px);
+}
+
+.catalogue-nav {
+  display: flex;
+  flex: 1;
+  gap: 20px;
+  font-size: 15px;
+}
+
+.catalogue-nav a {
+  color: var(--text-muted);
+  text-decoration: none;
+}
+
+.catalogue-nav a:hover,
+.catalogue-nav a[aria-current="page"] {
+  color: var(--text);
+  font-weight: 600;
+}
+
+@media (max-width: 640px) {
+  .catalogue-nav {
+    display: none;
+  }
+  .catalogue-header {
+    justify-content: space-between;
+  }
+}
+
+/* Poster ---------------------------------------------------------------- */
+.poster {
+  position: relative;
+  overflow: hidden;
+  container-type: inline-size;
+  aspect-ratio: 16 / 9;
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+.poster[data-variant="hero"] {
+  position: absolute;
+  inset: 0;
+  aspect-ratio: auto;
+}
+
+.poster-art {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.poster-shade {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(to top, var(--bg) 0%, transparent 60%);
+}
+
+.poster[data-variant="hero"] .poster-shade,
+.poster[data-variant="hero"] .poster-badge,
+.poster[data-variant="hero"] .poster-flag {
+  display: none;
+}
+
+.poster-badge {
+  position: absolute;
+  top: 6cqw;
+  left: 6cqw;
+  display: flex;
+  align-items: center;
+  gap: 2cqw;
+  font-size: 4cqw;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.poster-mark {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.8em;
+  letter-spacing: -0.04em;
+  color: var(--text);
+}
+
+.poster-flag {
+  position: absolute;
+  top: 5cqw;
+  right: 5cqw;
+  padding: 1.2cqw 3cqw;
+  border-radius: 999px;
+  background-color: var(--accent);
+  color: var(--on-accent);
+  font-size: 4cqw;
+  font-weight: 700;
+}
+
+.poster-flag-soon {
+  background-color: var(--surface-2);
+  color: var(--text);
+}
+
+.poster-title {
+  position: absolute;
+  inset: auto 6cqw 6cqw;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 8.4cqw;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+
+/* Billboard -------------------------------------------------------------- */
+.billboard {
+  position: relative;
+  min-height: min(82dvh, 760px);
+  overflow: hidden;
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+.billboard-shade {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, var(--bg) 0%, transparent 65%),
+    linear-gradient(to top, var(--bg) 0%, transparent 45%);
+}
+
+.billboard-content {
+  position: absolute;
+  inset: auto auto 12% clamp(16px, 4vw, 56px);
+  display: grid;
+  gap: 18px;
+  max-width: min(640px, 90vw);
+}
+
+.billboard-kicker {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.billboard-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(40px, 6vw, 84px);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+
+.billboard-title.is-small {
+  font-size: clamp(28px, 4vw, 44px);
+}
+
+.billboard-subtitle {
+  display: block;
+  font-weight: 600;
+  font-size: 0.4em;
+  letter-spacing: -0.01em;
+  color: var(--text-muted);
+}
+
+.billboard-promise {
+  font-size: clamp(16px, 1.4vw, 20px);
+  line-height: 1.45;
+}
+
+.billboard-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Buttons --------------------------------------------------------------- */
+.cta-play,
+.cta-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border-radius: 8px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.cta-play {
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  background-color: var(--text);
+  color: var(--bg);
+}
+
+.cta-play.is-large {
+  width: auto;
+  height: auto;
+  padding: 12px 28px;
+  border-radius: 8px;
+  font-size: 18px;
+}
+
+.cta-play.is-disabled {
+  width: auto;
+  padding: 0 12px;
+  background-color: var(--surface-2);
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+.cta-play.is-disabled.is-large {
+  padding: 12px 24px;
+  font-size: 18px;
+}
+
+.cta-secondary {
+  padding: 12px 24px;
+  background-color: var(--surface-2);
+  color: var(--text);
+  font-size: 18px;
+}
+
+.cta-secondary:hover,
+.cta-round:hover {
+  background-color: var(--border);
+}
+
+.cta-round {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 1.5px solid var(--text-muted);
+  border-radius: 999px;
+  color: var(--text);
+}
+
+.billboard .cta-round {
+  width: 48px;
+  height: 48px;
+}
+
+.cta-round[aria-pressed="true"] {
+  border-color: var(--text);
+}
+
+/* Rows -------------------------------------------------------------------- */
+.catalogue-rows {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 12px;
+  padding-top: 24px;
+}
+
+/* In dark, the first row slides over the billboard, like a streaming home */
+:root[data-theme="dark"] .catalogue-rows {
+  margin-top: -6vw;
+  padding-top: 0;
+}
+
+.row {
+  position: relative;
+}
+
+.row-title {
+  padding: 0 clamp(16px, 4vw, 56px);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(18px, 1.6vw, 24px);
+}
+
+.row-empty {
+  padding: 12px clamp(16px, 4vw, 56px) 24px;
+  color: var(--text-muted);
+}
+
+.row-frame {
+  position: relative;
+}
+
+.row-track {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  overflow-y: visible;
+  padding: 16px clamp(16px, 4vw, 56px) 140px;
+  margin-bottom: -124px;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: clamp(16px, 4vw, 56px);
+  scrollbar-width: none;
+}
+
+.row-track::-webkit-scrollbar {
+  display: none;
+}
+
+.row-track > li {
+  flex: 0 0 clamp(220px, 21vw, 340px);
+  scroll-snap-align: start;
+}
+
+.row-arrow {
+  position: absolute;
+  top: 16px;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(16px, 4vw, 56px);
+  aspect-ratio: auto;
+  height: calc(clamp(220px, 21vw, 340px) * 9 / 16);
+  background-color: color-mix(in srgb, var(--bg) 70%, transparent);
+  color: var(--text);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.row-arrow.is-left {
+  left: 0;
+}
+
+.row-arrow.is-right {
+  right: 0;
+}
+
+.row:hover .row-arrow,
+.row-arrow:focus-visible {
+  opacity: 1;
+}
+
+/* Tiles: the "hover to expand" pattern ------------------------------------- */
+.tile {
+  position: relative;
+  border-radius: 8px;
+  transition:
+    transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1) 0.15s;
+  transform-origin: center top;
+}
+
+.tile-poster {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 8px;
+  text-align: left;
+}
+
+.tile-panel {
+  position: absolute;
+  inset: calc(100% - 8px) 0 auto;
+  display: grid;
+  gap: 10px;
+  padding: 14px;
+  border-radius: 0 0 8px 8px;
+  background-color: var(--surface);
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.25s ease 0.2s,
+    visibility 0s linear 0.45s;
+}
+
+.tile-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tile-tags {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.tile:hover,
+.tile:focus-within {
+  z-index: 10;
+  transform: scale(1.18) translateY(-6%);
+}
+
+.tile:hover .tile-panel,
+.tile:focus-within .tile-panel {
+  opacity: 1;
+  visibility: visible;
+  transition-delay: 0.2s, 0s;
+}
+
+.tile:hover .tile-poster,
+.tile:focus-within .tile-poster {
+  border-radius: 8px 8px 0 0;
+}
+
+.row-track > li:first-child .tile {
+  transform-origin: left top;
+}
+
+.row-track > li:last-child .tile {
+  transform-origin: right top;
+}
+
+/* Meta line ------------------------------------------------------------------ */
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 10px;
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.meta-match {
+  font-weight: 700;
+  color: var(--link);
+}
+
+.meta-box {
+  padding: 0 6px;
+  border: 1px solid var(--text-muted);
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+/* Top 10 --------------------------------------------------------------------- */
+.row-track > li.top-item {
+  display: flex;
+  flex-basis: clamp(300px, 28vw, 440px);
+  align-items: flex-end;
+}
+
+.top-rank {
+  flex-shrink: 0;
+  margin-right: -0.08em;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(110px, 10vw, 170px);
+  line-height: 0.8;
+  letter-spacing: -0.08em;
+  color: var(--bg);
+  -webkit-text-stroke: 3px var(--text-muted);
+  user-select: none;
+}
+
+.top-item .tile {
+  flex: 0 0 64%;
+  min-width: 0;
+}
+
+/* Resume ---------------------------------------------------------------------- */
+.tile-resume {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.tile-resume-play {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--c-white);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.tile-resume:hover .tile-resume-play,
+.tile-resume:focus-visible .tile-resume-play {
+  opacity: 1;
+}
+
+.tile-progress {
+  position: absolute;
+  inset: auto 0 0;
+  height: 4px;
+  background-color: var(--c-frost);
+}
+
+.tile-progress > span {
+  display: block;
+  height: 100%;
+  background-color: var(--c-orange);
+}
+
+.tile-resume-label {
+  margin-top: 8px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+/* Info sheet (dialog) ---------------------------------------------------------- */
+.sheet {
+  width: min(880px, calc(100vw - 32px));
+  max-height: calc(100dvh - 48px);
+  margin: 24px auto;
+  padding: 0;
+  overflow-y: auto;
+  border: 0;
+  border-radius: 12px;
+  background-color: var(--surface);
+  color: var(--text);
+}
+
+.sheet::backdrop {
+  background-color: color-mix(in srgb, var(--c-night) 70%, transparent);
+}
+
+.sheet[open] {
+  animation: sheet-in 0.35s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+@keyframes sheet-in {
+  from {
+    opacity: 0;
+    scale: 0.94;
+  }
+}
+
+.sheet-hero {
+  position: relative;
+  aspect-ratio: 16 / 8;
+  overflow: hidden;
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+.sheet-hero-content {
+  position: absolute;
+  inset: auto 32px 28px;
+  display: grid;
+  gap: 16px;
+}
+
+.sheet-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+.sheet-body {
+  display: grid;
+  gap: 20px;
+  padding: 24px 32px 40px;
+}
+
+.sheet-columns {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+}
+
+@media (max-width: 640px) {
+  .sheet-columns {
+    grid-template-columns: 1fr;
+  }
+}
+
+.sheet-facts {
+  display: grid;
+  align-content: start;
+  gap: 10px;
+  font-size: 14px;
+}
+
+.sheet-facts dt {
+  display: inline;
+  color: var(--text-muted);
+}
+
+.sheet-facts dt::after {
+  content: " : ";
+}
+
+.sheet-facts dd {
+  display: inline;
+}
+
+.sheet-section {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 22px;
+}
+
+.episodes {
+  display: grid;
+}
+
+.episode {
+  display: grid;
+  grid-template-columns: 40px 1fr auto;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 8px;
+  border-top: 1px solid var(--border);
+}
+
+.episode-number {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 22px;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.episode-title {
+  font-weight: 600;
+}
+
+.episode-duration {
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+/* Intro ident ---------------------------------------------------------------- */
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background-color: var(--bg);
+  color: var(--text);
+  cursor: pointer;
+  animation: intro-out 0.5s ease 3.1s forwards;
+}
+
+.intro-logo {
+  position: relative;
+  z-index: 2;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(56px, 11vw, 180px);
+  line-height: 0.92;
+  letter-spacing: -0.03em;
+  transform-origin: 88% 78%;
+  animation:
+    intro-logo-in 1.1s cubic-bezier(0.2, 0.7, 0.2, 1) 0.2s both,
+    intro-dive 1.2s cubic-bezier(0.7, 0, 0.84, 0) 1.9s forwards;
+}
+
+.intro-logo > span {
+  display: block;
+}
+
+.intro-dot {
+  display: inline-block;
+  width: 0.2em;
+  height: 0.2em;
+  margin-left: 0.04em;
+  border-radius: 999px;
+  background-color: var(--accent);
+  box-shadow: 0 0 0.3em 0.05em var(--signal-glow);
+  animation: intro-dot 0.5s cubic-bezier(0.2, 0.8, 0.2, 1.4) 1.2s both;
+}
+
+.intro-ribbons {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  gap: 0.6vw;
+  opacity: 0;
+  animation: intro-ribbons 1.4s ease-in 1.7s forwards;
+}
+
+.intro-ribbons > span {
+  width: calc(0.6vw + (var(--i) * 0.07vw));
+  height: 100%;
+  background-image: linear-gradient(to bottom, transparent, var(--c-cobalt), var(--c-cyan), transparent);
+  transform-origin: center;
+  animation: intro-ribbon 1.4s cubic-bezier(0.7, 0, 0.3, 1) calc(1.7s + var(--i) * 0.02s) both;
+}
+
+.intro-ribbons > span:nth-child(3n) {
+  background-image: linear-gradient(to bottom, transparent, var(--c-cyan), transparent);
+}
+
+.intro-flash {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  background-color: var(--accent);
+  opacity: 0;
+  animation: intro-flash 0.6s ease 2.8s forwards;
+}
+
+.intro-skip {
+  position: absolute;
+  right: 24px;
+  bottom: 24px;
+  z-index: 4;
+  padding: 8px 16px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+@keyframes intro-logo-in {
+  from {
+    opacity: 0;
+    scale: 0.82;
+    letter-spacing: 0.08em;
+    filter: blur(12px);
+  }
+}
+
+@keyframes intro-dot {
+  from {
+    scale: 0;
+  }
+}
+
+@keyframes intro-dive {
+  to {
+    scale: 40;
+    opacity: 0.9;
+  }
+}
+
+@keyframes intro-ribbons {
+  20% {
+    opacity: 1;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes intro-ribbon {
+  from {
+    scale: 0 1;
+  }
+  60% {
+    scale: 1 1;
+  }
+  to {
+    scale: 3 1;
+    opacity: 0;
+  }
+}
+
+@keyframes intro-flash {
+  40% {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes intro-out {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tile,
+  .tile-panel {
+    transition: none;
+  }
+  .tile:hover,
+  .tile:focus-within {
+    transform: none;
+  }
+}

@@ -1,4 +1,4 @@
-import { Box, Cpu, Lightbulb, Sprout, type LucideIcon } from "lucide-react";
+import { Box, Cpu, Lightbulb, Play, Sprout, type LucideIcon } from "lucide-react";
 import Link from "next/link";
 import { Arc, DottedArc, Grid, Halo, Logotype, SectionLabel, SignalDot, Tag, TechStar } from "@/components/brand";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
@@ -53,9 +53,16 @@ export default function HomePage() {
             <Tag>chez onepoint</Tag>
           </div>
 
-          <div className="mt-10">
+          <div className="mt-10 flex flex-wrap items-center gap-4">
+            <Link
+              href="/formations?intro"
+              className="inline-flex items-center gap-3 rounded-pill bg-accent px-7 py-3.5 text-lg font-bold text-on-accent no-underline transition-transform hover:scale-105"
+            >
+              <Play size={20} aria-hidden="true" fill="currentColor" />
+              Se former
+            </Link>
             <Tag arrow href="/formations/ia-generative/configurer">
-              Formation pilote : Comprendre l&apos;IA générative
+              Formation pilote
             </Tag>
           </div>
         </section>
