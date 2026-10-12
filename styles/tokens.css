@@ -14,6 +14,9 @@
   --c-cyan: #7dd3fc; /* Cyan doux */
   --c-orange: #ff6b00; /* Orange signal */
   --c-frost: #cbd5e1; /* Gris froid */
+
+  /* Opaque value for alpha masks only (mask-image), never painted */
+  --mask: #000000;
 }
 
 /* ------------------------------------------------------------------ */
