@@ -1,6 +1,7 @@
 # Storyboard — Comprendre l'IA générative sans jargon (`ia-generative`)
 
 **Statut : brouillon v1**, en co-construction avec le formateur. Rien n'est figé tant que ce n'est pas marqué ✅.
+**Version projetable (v0)** : `content/formations/ia-generative/` — le détail slide par slide et les notes de l'orateur vivent désormais dans les fichiers MDX ; ce storyboard garde l'intention et les décisions.
 Variante de référence : **2h · découverte**. Les autres niveaux et publics seront dérivés ensuite.
 
 ---

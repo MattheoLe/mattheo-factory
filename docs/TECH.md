@@ -50,16 +50,18 @@
 │  ├─ brand/       ← Logotype, Halo, Grid, Lines, DottedArc, SignalDot, TechStar, Arc, Tag, Texture, SectionLabel, DotMatrix
 │  ├─ theme/       ← ThemeProvider, ThemeToggle
 │  ├─ diagrams/    ← schémas réutilisables
-│  ├─ pedagogy/    ← Quiz, FlipCard, Reveal, Challenge, Scenario, KeyTakeaway
+│  ├─ pedagogy/    ← Quiz, Poll, WordCollect, Stat, QRCode, Layout (Card, Columns, Points, Quote, Excerpt, Pillars)…
 │  ├─ adapt/       ← Level, Audience (affichage conditionnel)
-│  ├─ presenter/   ← plein écran, navigation clavier
+│  ├─ presenter/   ← Deck (clavier, plein écran, vue présentateur), Slide, Step, Notes, ModuleGate, store partagé (ADR-012)
 │  └─ mdx/         ← mapping des composants MDX
 ├─ lib/
 │  ├─ session.ts   ← parsing/validation de la config URL
 │  ├─ color.ts     ← calcul de contraste WCAG (styleguide)
 │  └─ useCssVar.ts ← lecture live d'un token CSS
 └─ styles/
-   └─ tokens.css   ← source unique des tokens
+   ├─ tokens.css   ← source unique des tokens
+   ├─ deck.css     ← scène 16:9, typographie des slides (cqw), vue présentateur
+   └─ slides.css   ← styles des composants pédagogiques et schémas
 ```
 
 ## Conventions

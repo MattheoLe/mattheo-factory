@@ -69,3 +69,14 @@ Format : contexte → décision → conséquences. On ajoute, on ne réécrit pa
 **Contexte** : le cœur du produit est le support de présentation. Le formateur veut construire un premier cours en profondeur, qui servira de modèle aux autres.
 **Décision** : formation pilote = `ia-generative`. Ordre des phases : conception du cours (storyboard + modèle de contenu) → moteur de présentation et composants → rédaction MDX du pilote + configurateur → catalogue et fiches des autres formations. MDX + Velite est confirmé (ADR-005).
 **Conséquences** : les composants sont tirés d'un vrai cours. Le catalogue public arrive plus tard.
+
+## ADR-012 — Architecture du moteur de présentation
+**Contexte** : le pilote doit être projetable de bout en bout (PRD v0.2) avec révélations, mode présentateur synchronisé, effet miroir, sans backend.
+**Décision** :
+- **Contenu** : Velite compile chaque séquence (`content/formations/<slug>/modules/*.mdx`) ; toutes les séquences sont rendues statiquement. Le format, le niveau et le public (URL) sont appliqués côté client par `ModuleGate`, `<Level>`, `<Audience>`.
+- **Slides pilotées par le DOM** : `<Deck>` repère les `[data-slide]` et `[data-step]` dans l'ordre du document et pose des attributs (`data-state`, `data-shown`) ; l'affichage et les révélations sont en CSS. Les listes dans `<Points>` deviennent des étapes.
+- **Format 16:9 unique** : chaque slide est un conteneur CSS ; toutes les tailles sont en `cqw`, le rendu est identique sur projecteur, portable et aperçu présentateur.
+- **Synchronisation sans serveur** : position, chrono, écran masqué et réponses de la salle sont stockés dans `localStorage` ; la fenêtre présentateur et la fenêtre projetée se synchronisent via l'événement `storage` (même navigateur).
+- **Animations** : CSS uniquement (entrée de slide, révélations, nuage de mots), neutralisées par `prefers-reduced-motion`. Motion reste disponible si un besoin dépasse le CSS.
+- **Quiz** : révélation en CSS pur (`:has`), sans JavaScript.
+**Conséquences** : aucune dépendance lourde, aucune donnée envoyée. Limite : la synchronisation ne fonctionne qu'entre fenêtres du même navigateur (suffisant pour le duo écran portable + projecteur). Le mode téléphone (v1.1) se branchera sur la même API de stockage.
