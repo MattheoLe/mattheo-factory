@@ -36,7 +36,7 @@ export function ThemeToggle({ compact = false, className = "" }: ThemeToggleProp
 
   return (
     <div
-      role="radiogroup"
+      role="group"
       aria-label="Thème d'affichage"
       className={`inline-flex items-center gap-1 rounded-pill border border-border bg-surface p-1 ${className}`}
     >
@@ -46,8 +46,7 @@ export function ThemeToggle({ compact = false, className = "" }: ThemeToggleProp
           <button
             key={value}
             type="button"
-            role="radio"
-            aria-checked={checked}
+            aria-pressed={checked}
             aria-label={compact ? label : undefined}
             title={label}
             onClick={() => setTheme(value)}
