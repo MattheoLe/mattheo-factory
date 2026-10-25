@@ -33,7 +33,9 @@ _Dernière mise à jour : 12/10/2026_
   - [x] Atelier deepfake (demi-journée) ; vote d'arbitrage bénéfices / risques
   - [x] Numérotation automatique des séquences, durées par format (2h = 114 min, 1h = 53 min, demi-journée = 3h09), séquences décochables
 - **Catalogue « streaming »** (PRD v0.3, ADR-013)
-  - [x] CTA « Se former » + intro animée (son optionnel, à fournir)
+  - [x] CTA « Se former » + intro animée avec son original synthétisé, rejouée à chaque « Se former »
+  - [x] Raccourci `R` en session : retour au début du deck
+  - [x] Next.js 16.4.0 → 16.4.3 (correctif de sécurité)
   - [x] Tête d'affiche, rangées défilantes, tuiles qui s'agrandissent, top 10, ma liste, reprendre, fiche avec épisodes
   - [x] Affiches SVG pour les 14 formations ; fiches Velite des 13 autres formations (métadonnées)
 
@@ -44,7 +46,7 @@ _Dernière mise à jour : 12/10/2026_
 - [ ] Images à fournir (`public/formations/ia-generative/`) : exemples multimodaux, photo réelle/générée, images virales
 - [ ] « Humain ou IA ? » : remplacer/compléter les extraits
 - [ ] Lien du formulaire d'avis (QR code séquence 15)
-- [ ] Son d'intro original (`public/sounds/intro.mp3`)
+- [x] Son d'intro original, synthétisé dans le navigateur (remplaçable par `public/sounds/intro.mp3`)
 - [ ] Aperçu de toutes les variantes (ADR-004)
 - [ ] Test de projection en conditions réelles (16:9, light et dark, deux écrans)
 

@@ -191,6 +191,8 @@ export function Deck({ deckId, title, formats, children }: DeckProps) {
           previous();
           break;
         case "Home":
+        case "r":
+        case "R":
           goTo(0);
           break;
         case "End":

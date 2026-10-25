@@ -2,14 +2,16 @@
 
 import { useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
+import { playIntroSound } from "./introSound";
 
-/** Optional sound: drop your own file here (never a third-party brand sound). */
+/** Optional custom sound: if this file exists it replaces the synthesized one. */
 const SOUND_URL = "/sounds/intro.mp3";
 const DURATION_MS = 3600;
 
 /**
  * Opening "ident" played when arriving from the "Se former" CTA (?intro):
  * the logotype lights up, light ribbons burst, the camera dives into the orange dot.
+ * Sound: custom file if present, otherwise an original synthesized sound.
  * Skippable (click, Escape, button); skipped entirely with prefers-reduced-motion.
  */
 export function Intro() {
@@ -18,21 +20,35 @@ export function Intro() {
   const requested = searchParams.has("intro");
   const [done, setDone] = useState(false);
 
+  // Next keeps visited pages alive between navigations: reset when a new
+  // "?intro" arrives so the ident plays again on every "Se former".
+  const [lastRequested, setLastRequested] = useState(requested);
+  if (requested !== lastRequested) {
+    setLastRequested(requested);
+    if (requested) setDone(false);
+  }
+
   const finish = useCallback(() => {
     setDone(true);
     router.replace("/formations", { scroll: false });
   }, [router]);
 
   useEffect(() => {
-    if (!requested) return;
+    if (!requested || done) return;
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    let cancelled = false;
+    let stopSound: () => void = () => {};
     const audio = new Audio(SOUND_URL);
     if (!reduced) {
       audio.volume = 0.8;
       audio.play().catch(() => {
-        // No sound file, or autoplay refused: the intro stays silent.
+        // No custom file (or it cannot play): use the synthesized ident,
+        // unless this run was already cleaned up (late rejection).
+        if (!cancelled) stopSound = playIntroSound();
       });
     }
+
     // Reduced motion: no ident at all, straight to the catalogue.
     const timer = window.setTimeout(finish, reduced ? 0 : DURATION_MS);
     const onKey = (event: KeyboardEvent) => {
@@ -40,11 +56,13 @@ export function Intro() {
     };
     window.addEventListener("keydown", onKey);
     return () => {
+      cancelled = true;
       window.clearTimeout(timer);
       window.removeEventListener("keydown", onKey);
       audio.pause();
+      stopSound();
     };
-  }, [requested, finish]);
+  }, [requested, done, finish]);
 
   if (!requested || done) return null;
 

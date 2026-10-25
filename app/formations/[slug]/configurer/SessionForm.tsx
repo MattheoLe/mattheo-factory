@@ -211,7 +211,7 @@ export function SessionForm({ slug, levels, audiences, formats, modules }: Sessi
         </ol>
         <p className="mt-3 text-xs text-text-muted">Décochez une séquence pour la retirer de cette session.</p>
         <p className="mt-6 border-t border-border pt-4 text-sm text-text-muted">
-          En session : <kbd>→</kbd> / <kbd>espace</kbd> avancer · <kbd>←</kbd> reculer · <kbd>P</kbd> vue présentateur ·{" "}
+          En session : <kbd>→</kbd> / <kbd>espace</kbd> avancer · <kbd>←</kbd> reculer · <kbd>R</kbd> revenir au début · <kbd>P</kbd> vue présentateur ·{" "}
           <kbd>F</kbd> plein écran · <kbd>T</kbd> thème · <kbd>B</kbd> masquer l&apos;écran · <kbd>Échap</kbd> revenir ici
         </p>
       </section>
