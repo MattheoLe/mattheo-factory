@@ -1,4 +1,4 @@
-import QR from "qrcode";
+import { qrPath } from "@/lib/qr";
 
 type QRCodeProps = {
   url?: string;
@@ -15,14 +15,7 @@ export function QRCode({ url, label }: QRCodeProps) {
     );
   }
 
-  const { modules } = QR.create(url, { errorCorrectionLevel: "M" });
-  const size = modules.size;
-  let path = "";
-  for (let y = 0; y < size; y++) {
-    for (let x = 0; x < size; x++) {
-      if (modules.get(y, x)) path += `M${x} ${y}h1v1h-1z`;
-    }
-  }
+  const { path, size } = qrPath(url);
 
   return (
     <figure className="qr" data-theme="light">

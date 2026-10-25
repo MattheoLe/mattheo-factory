@@ -10,6 +10,7 @@
     "content": "velite build"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.118.0",
     "lucide-react": "^1.55.0",
     "next": "^16.4.3",
     "next-themes": "^0.4.6",
