@@ -1238,3 +1238,100 @@
   background-image: linear-gradient(to top, var(--bg) 15%, transparent);
   pointer-events: none;
 }
+
+/* Captcha ---------------------------------------------------------------- */
+.captcha {
+  display: grid;
+  gap: 1cqw;
+  width: 30cqw;
+  padding: 1.2cqw;
+  border: 1px solid var(--border);
+  border-radius: 1.2cqw;
+  background-color: var(--surface);
+}
+
+.captcha-head {
+  padding: 1.2cqw 1.4cqw;
+  border-radius: 0.6cqw;
+  background-color: var(--primary);
+  color: var(--on-primary);
+  font-weight: 600;
+  font-size: 1.35cqw;
+  line-height: 1.3;
+}
+
+.captcha-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5cqw;
+}
+
+/* The grid is always visible; its step only ticks the right tiles. */
+.slide .captcha-grid[data-step] {
+  opacity: 1;
+  translate: 0 0;
+}
+
+.captcha-tile {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1;
+  border-radius: 0.4cqw;
+  background-color: var(--surface-2);
+  color: var(--text-muted);
+  transition: scale 0.3s ease;
+}
+
+.captcha-tile svg {
+  width: 3.4cqw;
+  height: 3.4cqw;
+}
+
+.captcha-check {
+  position: absolute;
+  top: 0.4cqw;
+  left: 0.4cqw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2cqw;
+  height: 2cqw;
+  border-radius: 999px;
+  background-color: var(--primary);
+  color: var(--on-primary);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.captcha-check svg {
+  width: 1.2cqw;
+  height: 1.2cqw;
+}
+
+.captcha-grid[data-shown] .captcha-tile[data-target],
+.slide[data-state="next"] .captcha-tile[data-target] {
+  scale: 0.88;
+  outline: 0.25cqw solid var(--primary);
+}
+
+.captcha-grid[data-shown] .captcha-check,
+.slide[data-state="next"] .captcha-check {
+  opacity: 1;
+}
+
+.captcha-foot {
+  display: flex;
+  align-items: center;
+  gap: 1cqw;
+  padding: 0.6cqw 0.4cqw 0;
+  font-size: 1.3cqw;
+}
+
+.captcha-box {
+  width: 2cqw;
+  height: 2cqw;
+  border: 0.15cqw solid var(--text-muted);
+  border-radius: 0.3cqw;
+}

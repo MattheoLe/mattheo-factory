@@ -14,20 +14,21 @@ type NextWordProps = {
  * CSS `order` puts the sentence back on top.
  */
 export function NextWord({ sentence, candidates }: NextWordProps) {
-  const sorted = [...candidates].sort((a, b) => b.p - a.p);
-  const winner = sorted[0];
+  // Least probable first: the answer is revealed last, so it is not obvious.
+  const sorted = [...candidates].sort((a, b) => a.p - b.p);
+  const winner = sorted[sorted.length - 1];
 
   return (
     <div className="nextword">
       <ol className="nextword-candidates">
         {sorted.map((candidate, index) => (
-          <li key={candidate.word} data-step="" className="nextword-row" data-top={index === 0 || undefined}>
+          <li key={candidate.word} data-step="" className="nextword-row" data-top={index === sorted.length - 1 || undefined}>
             <span className="nextword-word">{candidate.word}</span>
             <span className="nextword-track">
               <span className="nextword-bar" style={{ width: `${candidate.p}%` }} />
             </span>
             <span className="nextword-p">{candidate.p} %</span>
-            {index === 0 ? <SignalDot size="sm" /> : <span />}
+            {index === sorted.length - 1 ? <SignalDot size="sm" /> : <span />}
           </li>
         ))}
       </ol>

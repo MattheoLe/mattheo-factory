@@ -9,6 +9,7 @@ import { NextWord } from "@/components/diagrams/NextWord";
 import { Pipeline } from "@/components/diagrams/Pipeline";
 import { Rings } from "@/components/diagrams/Rings";
 import { Timeline } from "@/components/diagrams/Timeline";
+import { Captcha } from "@/components/pedagogy/Captcha";
 import { Card, Columns, Excerpt, Pillars, Points, Quote } from "@/components/pedagogy/Layout";
 import { Media } from "@/components/pedagogy/Media";
 import { Poll } from "@/components/pedagogy/Poll";
@@ -52,6 +53,7 @@ export const mdxComponents = {
   QRCode,
   Media,
   ScamCard,
+  Captcha,
   Embeddings,
   Embeddings3D,
   Hub,
