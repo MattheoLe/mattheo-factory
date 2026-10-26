@@ -1,5 +1,8 @@
-import { canvasModules, formations, modules } from "#site/content";
-import type { CanvasSlide } from "@/lib/canvas/model";
+import "server-only";
+import { readdirSync, readFileSync } from "node:fs";
+import path from "node:path";
+import { formations, modules } from "#site/content";
+import { isCanvasModule, type CanvasSlide } from "@/lib/canvas/model";
 
 export type Formation = (typeof formations)[number];
 
@@ -27,15 +30,39 @@ export function getFormations() {
   return [...formations].sort((a, b) => a.number - b.number);
 }
 
+/**
+ * Canvas sequences are read straight from disk (not through Velite), so what the
+ * editor saves is presented immediately in dev, and baked in at build time.
+ */
+function getCanvasModules(slug: string): Module[] {
+  const dir = path.join(process.cwd(), "content", "formations", slug, "modules");
+  let files: string[] = [];
+  try {
+    files = readdirSync(dir).filter((file) => /^\d{2}-.+\.json$/.test(file));
+  } catch {
+    return [];
+  }
+  return files.flatMap((file) => {
+    const data: unknown = JSON.parse(readFileSync(path.join(dir, file), "utf8"));
+    if (!isCanvasModule(data)) return [];
+    return [
+      {
+        ...data,
+        levels: data.levels as ModuleBase["levels"],
+        id: file.slice(0, 2),
+        formation: slug,
+        source: "canvas" as const,
+      },
+    ];
+  });
+}
+
 /** Modules of a formation (MDX and canvas), ordered by id (file prefix). */
 export function getModules(slug: string): Module[] {
   const mdx: Module[] = modules
     .filter((module) => module.formation === slug)
     .map((module) => ({ ...module, source: "mdx" as const }));
-  const canvas: Module[] = canvasModules
-    .filter((module) => module.formation === slug)
-    .map((module) => ({ ...module, slides: module.slides as CanvasSlide[], source: "canvas" as const }));
-  return [...mdx, ...canvas].sort((a, b) => a.id.localeCompare(b.id, "fr", { numeric: true }));
+  return [...mdx, ...getCanvasModules(slug)].sort((a, b) => a.id.localeCompare(b.id, "fr", { numeric: true }));
 }
 
 /** Formations that can actually be configured and presented (they have modules). */

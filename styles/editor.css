@@ -1,0 +1,412 @@
+/*
+ * Visual editor (ADR-014). App-like layout: top bar, slides on the left,
+ * 16:9 stage in the middle, inspector on the right. Colors: tokens only.
+ */
+
+.editor {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr) 300px;
+  grid-template-rows: auto auto minmax(0, 1fr);
+  grid-template-areas:
+    "bar bar bar"
+    "message message message"
+    "slides canvas panel";
+  background-color: var(--surface-2);
+  color: var(--text);
+  font-size: 14px;
+}
+
+/* Top bar ------------------------------------------------------------------ */
+.editor-bar {
+  grid-area: bar;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+  background-color: var(--surface);
+}
+
+.editor-brand {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 18px;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+
+.editor-title {
+  max-width: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--text-muted);
+}
+
+.editor-module-select {
+  width: 240px;
+}
+
+.editor-tools,
+.editor-actions,
+.editor-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.editor-actions {
+  margin-left: auto;
+}
+
+.editor-status {
+  min-width: 110px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.editor-button,
+.editor-icon-button,
+.editor-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background-color: var(--surface);
+  color: var(--text);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.editor-icon-button {
+  width: 32px;
+  padding: 0;
+}
+
+.editor-button:hover,
+.editor-icon-button:hover,
+.editor-chip:hover {
+  background-color: var(--surface-2);
+}
+
+.editor-button:disabled,
+.editor-icon-button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.editor-button.is-primary {
+  border-color: var(--primary);
+  background-color: var(--primary);
+  color: var(--on-primary);
+}
+
+.editor-icon-button[aria-pressed="true"],
+.editor-chip[aria-pressed="true"] {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 1px var(--primary);
+}
+
+.editor-message {
+  grid-area: message;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 14px;
+  border-bottom: 1px solid var(--border);
+  background-color: var(--surface);
+}
+
+/* Slides list ---------------------------------------------------------------- */
+.editor-slides {
+  grid-area: slides;
+  display: grid;
+  align-content: start;
+  gap: 10px;
+  overflow-y: auto;
+  padding: 14px;
+  border-right: 1px solid var(--border);
+  background-color: var(--surface);
+}
+
+.editor-thumb-row {
+  display: grid;
+  gap: 4px;
+}
+
+.editor-thumb {
+  display: grid;
+  grid-template-columns: 18px minmax(0, 1fr);
+  align-items: start;
+  gap: 6px;
+  text-align: left;
+}
+
+.editor-thumb-number {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.editor-thumb-canvas {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  container-type: inline-size;
+  background-color: var(--bg);
+  pointer-events: none;
+}
+
+.editor-thumb[aria-current] .editor-thumb-canvas {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px var(--primary);
+}
+
+.editor-thumb-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 2px;
+}
+
+.editor-thumb-actions button {
+  display: inline-flex;
+  padding: 4px;
+  border-radius: 6px;
+  color: var(--text-muted);
+}
+
+.editor-thumb-actions button:hover {
+  background-color: var(--surface-2);
+  color: var(--text);
+}
+
+.editor-add-slide {
+  width: 100%;
+}
+
+/* Stage ------------------------------------------------------------------------ */
+.editor-canvas {
+  grid-area: canvas;
+  display: grid;
+  place-items: center;
+  overflow: auto;
+  padding: 32px;
+}
+
+.editor-frame {
+  position: relative;
+  width: min(100%, calc((100dvh - 160px) * 16 / 9));
+}
+
+.editor-stage {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  container-type: inline-size;
+  border-radius: 4px;
+  box-shadow: 0 0 0 1px var(--border);
+  background-color: var(--bg);
+}
+
+.editor-el {
+  cursor: move;
+  user-select: none;
+}
+
+.editor-el[contenteditable="true"] {
+  cursor: text;
+  user-select: text;
+  outline: 2px solid var(--primary);
+}
+
+.editor-el[data-locked] {
+  cursor: default;
+}
+
+.editor-empty {
+  max-width: 420px;
+  padding: 32px;
+  border: 1px dashed var(--border);
+  border-radius: 12px;
+  text-align: center;
+  color: var(--text-muted);
+}
+
+/* Moveable / Selecto take the brand colors */
+.editor .moveable-control-box {
+  --moveable-color: var(--primary);
+}
+
+.editor .selecto-selection {
+  border-color: var(--primary) !important;
+  background-color: color-mix(in srgb, var(--primary) 12%, transparent) !important;
+}
+
+/* Inspector ----------------------------------------------------------------------- */
+.editor-panel {
+  grid-area: panel;
+  overflow-x: hidden;
+  overflow-y: auto;
+  border-left: 1px solid var(--border);
+  background-color: var(--surface);
+}
+
+.editor-inspector {
+  display: grid;
+  gap: 4px;
+  padding: 6px 14px 24px;
+}
+
+.editor-section {
+  display: grid;
+  gap: 10px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.editor-section-title {
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.editor-field {
+  display: grid;
+  gap: 6px;
+}
+
+.editor-label {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.editor-input {
+  width: 100%;
+  min-height: 32px;
+  padding: 4px 8px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background-color: var(--surface);
+  color: var(--text);
+}
+
+.editor-notes {
+  min-height: 140px;
+  resize: vertical;
+}
+
+.editor-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.editor-number {
+  display: grid;
+  gap: 4px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.editor-number input,
+.editor-number select {
+  width: 100%;
+  min-width: 0;
+  min-height: 30px;
+  padding: 2px 6px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background-color: var(--surface);
+  color: var(--text);
+  font-size: 13px;
+}
+
+.editor-presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.editor-swatches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.editor-swatch {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.editor-swatch[aria-pressed="true"] {
+  box-shadow:
+    0 0 0 2px var(--surface),
+    0 0 0 4px var(--primary);
+}
+
+.editor-swatch.is-none {
+  background-image: linear-gradient(135deg, transparent 45%, var(--text-muted) 45% 55%, transparent 55%);
+}
+
+.editor-swatch.is-custom {
+  overflow: hidden;
+  background-image: conic-gradient(from 0deg, var(--c-orange), var(--c-cyan), var(--c-cobalt), var(--c-orange));
+}
+
+.editor-swatch.is-custom input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.editor-hint {
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--text-muted);
+}
+
+.editor-contrast {
+  padding: 6px 8px;
+  border-radius: 6px;
+  background-color: var(--surface-2);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.editor-contrast::before {
+  content: "⚠ ";
+}
+
+.editor-contrast[data-ok]::before {
+  content: "✓ ";
+}
+
+.editor-contrast:not([data-ok]) {
+  box-shadow: inset 3px 0 0 var(--accent);
+}
+
+@media (max-width: 1100px) {
+  .editor {
+    grid-template-columns: 160px minmax(0, 1fr) 260px;
+  }
+  .editor-canvas {
+    padding: 16px;
+  }
+}

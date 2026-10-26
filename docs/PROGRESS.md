@@ -40,7 +40,8 @@ _Dernière mise à jour : 12/10/2026_
   - [x] Affiches SVG pour les 14 formations ; fiches Velite des 13 autres formations (métadonnées)
 
 ## 🔄 En cours — Phase 3 : éditeur visuel (branche `phase-3-editeur`, ADR-014)
-- [ ] **E1 Fondations** : format canvas (JSON), rendu dans le moteur de présentation, page éditeur (slides, canvas 16:9, sélection, déplacer / redimensionner / pivoter, guides magnétiques, alignements, texte et formes, panneau de style, contraste, annuler / rétablir, enregistrement local, publier)
+- [x] **E1 Fondations** : format canvas (JSON), rendu dans le moteur de présentation, page éditeur `/editeur` (séquences, slides, canvas 16:9, sélection simple et multiple, déplacer / redimensionner / pivoter, guides magnétiques, alignements, texte / rectangle / ellipse / ligne, panneau de style avec presets typographiques de la DA, couleurs DA + libres, contrôle du contraste en direct, verrouillage, premier / arrière-plan, notes, raccourcis clavier, annuler / rétablir, enregistrement automatique, bouton Publier)
+  - [ ] À tester par le formateur : le bouton **Publier** (commit + push) n'a pas été déclenché pendant le développement
 - [ ] **E2 Bibliothèque** : assets de la DA et nouveaux (vagues, formes, icônes, images), modèles de slides, polices et couleurs libres
 - [ ] **E3 Blocs interactifs** : quiz, sondages, nuage de mots, schémas… ; notes ; visibilité niveau / public / format
 - [ ] **E4 Animations** : entrées, ordre de révélation, transitions, aperçu

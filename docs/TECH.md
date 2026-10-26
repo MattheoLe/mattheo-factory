@@ -52,10 +52,13 @@
 │  ├─ diagrams/    ← schémas réutilisables
 │  ├─ pedagogy/    ← Quiz, Poll, WordCollect, Stat, QRCode, Layout (Card, Columns, Points, Quote, Excerpt, Pillars)…
 │  ├─ adapt/       ← Level, Audience (affichage conditionnel)
+│  ├─ canvas/      ← rendu des slides « canvas » (CanvasView, CanvasSlideSection), ADR-014
+│  ├─ editor/      ← éditeur visuel local (Editor, Stage avec Moveable / Selecto, Inspector, ColorField)
 │  ├─ presenter/   ← Deck (clavier, plein écran, vue présentateur), Slide, Step, Notes, ModuleGate, store partagé (ADR-012)
 │  └─ mdx/         ← mapping des composants MDX
 ├─ lib/
 │  ├─ session.ts   ← parsing/validation de la config URL
+│  ├─ canvas/      ← format canvas (model.ts) et stockage local de l'éditeur (storage.ts, dev uniquement)
 │  ├─ color.ts     ← calcul de contraste WCAG (styleguide)
 │  └─ useCssVar.ts ← lecture live d'un token CSS
 └─ styles/
