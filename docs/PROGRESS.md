@@ -41,6 +41,7 @@ _Dernière mise à jour : 12/10/2026_
 
 ## 🔄 En cours — Phase 3 : éditeur visuel (branche `phase-3-editeur`, ADR-014)
 - [x] **E1 Fondations** : format canvas (JSON), rendu dans le moteur de présentation, page éditeur `/editeur` (séquences, slides, canvas 16:9, sélection simple et multiple, déplacer / redimensionner / pivoter, guides magnétiques, alignements, texte / rectangle / ellipse / ligne, panneau de style avec presets typographiques de la DA, couleurs DA + libres, contrôle du contraste en direct, verrouillage, premier / arrière-plan, notes, raccourcis clavier, annuler / rétablir, enregistrement automatique, bouton Publier)
+  - [x] Correctifs après tests : boîtes de dialogue intégrées (les navigateurs bloquaient `prompt()` / `confirm()`), focus automatique dans le texte au double-clic, écriture atomique des fichiers, cache disque Turbopack désactivé en dev (styles périmés)
   - [ ] À tester par le formateur : le bouton **Publier** (commit + push) n'a pas été déclenché pendant le développement
 - [ ] **E2 Bibliothèque** : assets de la DA et nouveaux (vagues, formes, icônes, images), modèles de slides, polices et couleurs libres
 - [ ] **E3 Blocs interactifs** : quiz, sondages, nuage de mots, schémas… ; notes ; visibilité niveau / public / format

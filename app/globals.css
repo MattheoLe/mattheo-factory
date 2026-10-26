@@ -4,6 +4,7 @@
 @import "../styles/slides.css";
 @import "../styles/catalogue.css";
 @import "../styles/editor.css";
+@import "../styles/ui.css";
 
 /*
  * Tailwind only knows our tokens: the default palette and default shadows

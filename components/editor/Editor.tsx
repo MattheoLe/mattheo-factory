@@ -22,6 +22,7 @@ import { ThemeToggle } from "@/components/theme/ThemeToggle";
 import { createElement, createSlide, type CanvasElement, type CanvasModule, type ElementType } from "@/lib/canvas/model";
 import { Inspector } from "./Inspector";
 import { Stage } from "./Stage";
+import { useDialog } from "@/components/ui/useDialog";
 import { cloneElement, cloneSlide, useEditorState } from "./state";
 
 type ModuleSummary = { id: string; file: string; title: string; source: "mdx" | "canvas" };
@@ -49,6 +50,7 @@ export function Editor({ slug, title }: { slug: string; title: string }) {
   const editor = useEditorState();
   const { state } = editor;
   const clipboard = useRef<CanvasElement[]>([]);
+  const { dialog, ask, confirm } = useDialog();
 
   const deck = state.module;
   const slide = deck?.slides[state.slideIndex];
@@ -107,8 +109,13 @@ export function Editor({ slug, title }: { slug: string; title: string }) {
   }, [deck, moduleId, slug, state.revision]);
 
   async function createSequence() {
-    const name = window.prompt("Titre de la nouvelle séquence ?");
-    if (!name?.trim()) return;
+    const name = await ask({
+      title: "Nouvelle séquence",
+      message: "Une séquence regroupe plusieurs slides (par exemple « Accroche » ou « Comment ça marche »).",
+      placeholder: "Titre de la séquence",
+      confirmLabel: "Créer",
+    });
+    if (!name) return;
     const data: CanvasModule = { title: name.trim(), kind: "core", duration: 10, slides: [createSlide()] };
     const response = await fetch(`/api/editor/${slug}`, {
       method: "POST",
@@ -122,7 +129,12 @@ export function Editor({ slug, title }: { slug: string; title: string }) {
   }
 
   async function publishContent() {
-    const note = window.prompt("Décrivez la modification (message de publication) :", "mise à jour des slides");
+    const note = await ask({
+      title: "Publier sur GitHub",
+      message: "Vos modifications seront enregistrées dans l'historique du projet et envoyées sur GitHub. Décrivez-les en quelques mots.",
+      defaultValue: "mise à jour des slides",
+      confirmLabel: "Publier",
+    });
     if (note === null) return;
     setMessage("Publication en cours…");
     const response = await fetch("/api/editor/publish", {
@@ -187,6 +199,7 @@ export function Editor({ slug, title }: { slug: string; title: string }) {
   useEffect(() => {
     function onKeyDown(event: KeyboardEvent) {
       if (isTyping(event.target)) return;
+      if (event.target instanceof Element && event.target.closest("dialog")) return;
       const mod = event.ctrlKey || event.metaKey;
       const key = event.key.toLowerCase();
       if (mod && key === "z" && !event.shiftKey) {
@@ -230,6 +243,7 @@ export function Editor({ slug, title }: { slug: string; title: string }) {
 
   return (
     <div className="editor">
+      {dialog}
       <header className="editor-bar">
         <Link href="/editeur" className="editor-brand no-underline">
           Éditeur<span className="text-accent">.</span>
@@ -339,8 +353,8 @@ export function Editor({ slug, title }: { slug: string; title: string }) {
                   type="button"
                   aria-label="Supprimer la slide"
                   disabled={deck.slides.length === 1}
-                  onClick={() => {
-                    if (window.confirm("Supprimer cette slide ?")) {
+                  onClick={async () => {
+                    if (await confirm({ title: "Supprimer cette slide ?", confirmLabel: "Supprimer", danger: true })) {
                       change((current) => ({ ...current, slides: current.slides.filter((_, i) => i !== slideIndex) }));
                     }
                   }}

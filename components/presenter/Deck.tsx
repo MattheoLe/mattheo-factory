@@ -15,6 +15,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useTheme } from "next-themes";
 import { useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore, type ReactNode } from "react";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
+import { useDialog } from "@/components/ui/useDialog";
 import { LABELS, parseSessionConfig } from "@/lib/session";
 import { SessionProvider, type SessionContextValue } from "./SessionContext";
 import { clearDeckStore, useDeckStore } from "./useDeckStore";
@@ -127,11 +128,16 @@ export function Deck({ deckId, title, formats, children }: DeckProps) {
     return `/formations/${deckId}/configurer${query ? `?${query}` : ""}`;
   }, [searchParams, deckId]);
 
-  const resetSession = useCallback(() => {
-    if (window.confirm("Nouvelle session : effacer les réponses saisies et revenir au début ?")) {
-      clearDeckStore(deckId);
-    }
-  }, [deckId]);
+  const { dialog, confirm } = useDialog();
+  const resetSession = useCallback(async () => {
+    const ok = await confirm({
+      title: "Nouvelle session ?",
+      message: "Les réponses saisies seront effacées et la présentation reviendra au début.",
+      confirmLabel: "Effacer et recommencer",
+      danger: true,
+    });
+    if (ok) clearDeckStore(deckId);
+  }, [confirm, deckId]);
 
   // Slide total, read by the catalogue's "Reprendre" row.
   useEffect(() => {
@@ -171,6 +177,7 @@ export function Deck({ deckId, title, formats, children }: DeckProps) {
     function onKeyDown(event: KeyboardEvent) {
       if (event.defaultPrevented || event.altKey || event.ctrlKey || event.metaKey) return;
       if (isTypingTarget(event.target)) return;
+      if (event.target instanceof Element && event.target.closest("dialog")) return;
       const onButton = event.target instanceof HTMLButtonElement || event.target instanceof HTMLAnchorElement;
 
       switch (event.key) {
@@ -245,6 +252,7 @@ export function Deck({ deckId, title, formats, children }: DeckProps) {
   return (
     <SessionProvider value={session}>
       <div className="deck" data-view={view} data-blank={blank || undefined}>
+        {dialog}
         <div ref={trackRef} className="deck-track" aria-live="off">
           {children}
         </div>

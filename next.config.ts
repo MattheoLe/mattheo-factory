@@ -10,6 +10,11 @@ if (!process.env.VELITE_STARTED && isDev) {
 
 const nextConfig: NextConfig = {
   cacheComponents: true,
+  experimental: {
+    // The dev disk cache served stale CSS after adding stylesheets (seen several
+    // times); slower restarts, but always up to date.
+    turbopackFileSystemCacheForDev: false,
+  },
   partialPrefetching: true,
   turbopack: {
     root: path.join(__dirname),

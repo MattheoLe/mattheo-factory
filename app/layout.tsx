@@ -15,7 +15,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     // suppressHydrationWarning: next-themes sets data-theme before hydration.
     <html lang="fr" className={`${inter.variable} ${poppins.variable}`} suppressHydrationWarning>
-      <body className="min-h-dvh">
+      {/* suppressHydrationWarning: browser extensions add attributes to <body>. */}
+      <body className="min-h-dvh" suppressHydrationWarning>
         <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useMemo, useState } from "react";
 import { clearDeckStore } from "@/components/presenter/useDeckStore";
+import { useDialog } from "@/components/ui/useDialog";
 import {
   FORMATS,
   LABELS,
@@ -44,6 +45,7 @@ export function SessionForm({ slug, levels, audiences, formats, modules }: Sessi
   const [audience, setAudience] = useState<Audience | null>(initial.audience);
   const [format, setFormat] = useState<Format>(initial.format);
   const [copied, setCopied] = useState(false);
+  const { dialog, confirm } = useDialog();
   // Sequences unticked by the trainer (kept across format changes).
   const [skipped, setSkipped] = useState<string[]>(() =>
     initial.modules ? (formats[initial.format] ?? []).filter((id) => !initial.modules?.includes(id)) : [],
@@ -80,12 +82,19 @@ export function SessionForm({ slug, levels, audiences, formats, modules }: Sessi
     window.open(`${sessionHref}&vue=presentateur`, `presenter-${slug}`, "popup,width=1400,height=860");
   }
 
-  function reset() {
-    if (window.confirm("Effacer les réponses saisies lors de la dernière session ?")) clearDeckStore(slug);
+  async function reset() {
+    const ok = await confirm({
+      title: "Effacer les réponses ?",
+      message: "Les réponses saisies lors de la dernière session (nuages de mots, sondages) seront supprimées.",
+      confirmLabel: "Effacer",
+      danger: true,
+    });
+    if (ok) clearDeckStore(slug);
   }
 
   return (
     <div className="mt-12 grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
+      {dialog}
       <form className="grid content-start gap-6" onSubmit={(event) => event.preventDefault()}>
         <div className="grid gap-2">
           <label htmlFor="level" className="type-eyebrow text-text-muted">

@@ -1,0 +1,68 @@
+/* In-app dialogs (components/ui/useDialog). Colors: tokens only. */
+.ui-dialog {
+  width: min(460px, calc(100vw - 32px));
+  margin: auto;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background-color: var(--surface);
+  color: var(--text);
+}
+
+.ui-dialog::backdrop {
+  background-color: color-mix(in srgb, var(--c-night) 55%, transparent);
+}
+
+.ui-dialog-body {
+  display: grid;
+  gap: 16px;
+  padding: 24px;
+}
+
+.ui-dialog-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 22px;
+  letter-spacing: -0.02em;
+}
+
+.ui-dialog-message {
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.ui-dialog-input {
+  min-height: 42px;
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background-color: var(--bg);
+  color: var(--text);
+  font-size: 16px;
+}
+
+.ui-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.ui-dialog-button {
+  height: 40px;
+  padding: 0 16px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background-color: var(--surface);
+  color: var(--text);
+  font-weight: 600;
+}
+
+.ui-dialog-button.is-primary {
+  border-color: var(--primary);
+  background-color: var(--primary);
+  color: var(--on-primary);
+}
+
+.ui-dialog-button:disabled {
+  opacity: 0.45;
+}

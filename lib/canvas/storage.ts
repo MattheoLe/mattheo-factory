@@ -69,7 +69,7 @@ export async function writeModule(slug: string, id: string, data: CanvasModule) 
   if (!isCanvasModule(data)) throw new Error("invalid-module");
   const file = await canvasFile(slug, id);
   if (!file) throw new Error("not-found");
-  await fs.writeFile(path.join(modulesDir(slug), file), `${JSON.stringify(data, null, 2)}\n`, "utf8");
+  await writeAtomic(path.join(modulesDir(slug), file), data);
 }
 
 function fileName(title: string) {
@@ -91,8 +91,15 @@ export async function createModule(slug: string, data: CanvasModule) {
   await fs.mkdir(dir, { recursive: true });
   const used = (await fs.readdir(dir)).map((file) => Number(file.slice(0, 2))).filter(Number.isFinite);
   const id = String(Math.max(0, ...used) + 1).padStart(2, "0");
-  await fs.writeFile(path.join(dir, `${id}-${fileName(data.title)}.json`), `${JSON.stringify(data, null, 2)}\n`, "utf8");
+  await writeAtomic(path.join(dir, `${id}-${fileName(data.title)}.json`), data);
   return id;
+}
+
+/** Writes through a temporary file so a reader never sees a half-written JSON. */
+async function writeAtomic(file: string, data: CanvasModule) {
+  const temp = `${file}.tmp`;
+  await fs.writeFile(temp, `${JSON.stringify(data, null, 2)}\n`, "utf8");
+  await fs.rename(temp, file);
 }
 
 const run = promisify(execFile);

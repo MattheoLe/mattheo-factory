@@ -43,6 +43,19 @@ export function Stage({ slide, selected, onSelect, onChange }: StageProps) {
     return () => observer.disconnect();
   }, []);
 
+  // Entering text editing: focus the box and select its text so typing replaces it.
+  useEffect(() => {
+    if (!editing) return;
+    const element = stageRef.current?.querySelector<HTMLElement>(`[data-id="${editing}"]`);
+    if (!element) return;
+    element.focus();
+    const range = document.createRange();
+    range.selectNodeContents(element);
+    const selection = window.getSelection();
+    selection?.removeAllRanges();
+    selection?.addRange(range);
+  }, [editing]);
+
   const scale = size.width / STAGE.width || 1;
   const byId = useMemo(() => new Map(slide.elements.map((element) => [element.id, element])), [slide.elements]);
 

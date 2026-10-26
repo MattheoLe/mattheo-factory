@@ -43,7 +43,12 @@ function getCanvasModules(slug: string): Module[] {
     return [];
   }
   return files.flatMap((file) => {
-    const data: unknown = JSON.parse(readFileSync(path.join(dir, file), "utf8"));
+    let data: unknown;
+    try {
+      data = JSON.parse(readFileSync(path.join(dir, file), "utf8"));
+    } catch {
+      return []; // unreadable file: skip it rather than break the page
+    }
     if (!isCanvasModule(data)) return [];
     return [
       {
