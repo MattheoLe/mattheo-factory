@@ -4,7 +4,7 @@ import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import { useEffect, useState } from "react";
 
 /**
- * "Phone" mode (ADR-010, ADR-014): participants scan a QR code and answer from
+ * "Phone" mode (ADR-010, paused, see ADR-014): participants scan a QR code and answer from
  * their phone; answers are stored in a hosted Supabase table and pushed live to
  * the projected slide. Anonymous: only the session code, the question id and
  * the answer are stored. Disabled when the environment is not configured.

@@ -39,6 +39,16 @@ _Dernière mise à jour : 12/10/2026_
   - [x] Tête d'affiche, rangées défilantes, tuiles qui s'agrandissent, top 10, ma liste, reprendre, fiche avec épisodes
   - [x] Affiches SVG pour les 14 formations ; fiches Velite des 13 autres formations (métadonnées)
 
+## 🔄 En cours — Phase 3 : éditeur visuel (branche `phase-3-editeur`, ADR-014)
+- [ ] **E1 Fondations** : format canvas (JSON), rendu dans le moteur de présentation, page éditeur (slides, canvas 16:9, sélection, déplacer / redimensionner / pivoter, guides magnétiques, alignements, texte et formes, panneau de style, contraste, annuler / rétablir, enregistrement local, publier)
+- [ ] **E2 Bibliothèque** : assets de la DA et nouveaux (vagues, formes, icônes, images), modèles de slides, polices et couleurs libres
+- [ ] **E3 Blocs interactifs** : quiz, sondages, nuage de mots, schémas… ; notes ; visibilité niveau / public / format
+- [ ] **E4 Animations** : entrées, ordre de révélation, transitions, aperçu
+- [ ] **E5 Formations** : création depuis le catalogue ; conversion du pilote au format canvas
+
+## ⏸️ En pause
+- Mode QR code (réponses depuis les téléphones) : couche `lib/live.ts` posée, non branchée (ADR-014)
+
 ## 🔄 En cours — Itérations sur le pilote (branche `phase-2-conception`)
 - [ ] Relecture du cours par le formateur (fond, ton, exemples, anecdotes personnelles)
 - [ ] Valider les chiffres « à valider » (séquences 2, 5, 7, 9), le cas *Mata v. Avianca*, les montants de la loi SREN

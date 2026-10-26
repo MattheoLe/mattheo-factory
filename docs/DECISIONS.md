@@ -89,3 +89,13 @@ Format : contexte → décision → conséquences. On ajoute, on ne réécrit pa
 - **Favoris et reprise** dans `localStorage` (même store que le moteur de présentation, ADR-012) : confort du visiteur, aucun compte (ADR-001).
 - Les 13 autres formations ont une fiche Velite (métadonnées de `CATALOGUE.md`) sans séquences ; seules les formations avec séquences sont configurables.
 **Conséquences** : la page `/formations` remplace le catalogue « liste + filtres » prévu ; les filtres par niveau et public restent à ajouter (PRD v0.3).
+
+## ADR-014 — Éditeur visuel intégré, local, format « canvas »
+**Contexte** : le formateur veut créer et modifier ses formations à la souris (façon Canva / Figma) avec sa DA en bibliothèque. Les slides MDX ne sont pas modifiables visuellement. Options étudiées : éditeur intégré, outil externe + conversion (perte de l'interactivité et de l'adaptation), éditeur commercial (licences, dépendance).
+**Décision** :
+- **Éditeur intégré au site** (option A), rendu en HTML/CSS identique à la projection. Manipulation avec les bibliothèques MIT **Moveable** (déplacer, redimensionner, pivoter, guides magnétiques) et **Selecto** (sélection multiple).
+- **Format « canvas »** : une séquence est un fichier JSON (`content/formations/<slug>/modules/NN-nom.json`) ; une slide est une liste d'éléments positionnés sur une scène logique de 1600 × 900, avec style, animation et visibilité. Les séquences MDX existantes restent lisibles pendant la transition ; **le pilote sera converti** (étape E5).
+- **Édition locale uniquement** : l'éditeur et ses routes d'API n'existent qu'en développement (`npm run dev`), écrivent dans les fichiers du projet, et un bouton « Publier » fait le commit et le push sur GitHub. En production, le site reste statique et sans compte (ADR-001 inchangé).
+- **Couleurs et polices** : la DA par défaut (tokens, qui s'adaptent au clair et au sombre ; Poppins et Inter), et un choix libre possible (couleur personnalisée, police Google) **stocké dans le contenu**, jamais dans le code, avec un **avertissement de contraste** calculé en direct. La règle « jamais de couleur en dur » reste valable pour le code.
+- **Mode QR code (ADR-010) mis en pause** : la couche `lib/live.ts` reste en place, non branchée.
+**Conséquences** : chantier en 5 étapes (E1 fondations, E2 bibliothèque, E3 blocs interactifs, E4 animations, E5 formations et conversion du pilote). Le contenu devient éditable sans code ; l'historique des versions est assuré par Git.

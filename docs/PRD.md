@@ -1,6 +1,6 @@
 # PRD — Building things. Formations
 
-**Version courante : v0.3** — catalogue « streaming » (affiches, rangées, ma liste, reprendre), intro animée
+**Version courante : v0.4** — éditeur visuel de slides intégré (local), formations modifiables à la souris
 Historique : voir section « Changelog » en bas.
 
 ---
@@ -30,6 +30,7 @@ Un site unique qui sert à la fois de **vitrine du catalogue** de formations et 
 - **Quiz et avis en deux modes** : mode « salle » (main levée, réponse orale) en v1 ; composants conçus dès la v1 pour accueillir le mode « téléphone » (v1.1). En attendant, l'avis global peut passer par un QR code vers un formulaire externe.
 - **QR codes** générés pour pointer vers une ressource ou un formulaire.
 - **Thème light/dark** avec bascule, préférence système par défaut.
+- **Éditeur visuel de slides (local)** : créer et modifier les formations à la souris, façon Canva / Figma. Canvas 16:9, déplacer, redimensionner, pivoter, guides magnétiques et alignements, calques, annuler / rétablir. Panneau de style : polices, tailles, couleurs, fonds, bordures. **La DA par défaut** (couleurs, tokens clair/sombre, Poppins / Inter), avec la possibilité de choisir librement couleurs et polices, et un avertissement de contraste. Bibliothèque d'assets de la DA (et plus : vagues, formes, icônes, images), modèles de slides, blocs interactifs (quiz, sondages, schémas…), animations, notes de l'orateur, visibilité par niveau / public / format. L'éditeur fonctionne **sur le poste du formateur** (`npm run dev`), enregistre dans les fichiers du projet et publie sur GitHub ; le site en ligne reste statique et sans compte (ADR-014).
 - **Page à propos et contact** (lien mailto ou LinkedIn).
 
 ### Exclus de la v1
@@ -64,6 +65,7 @@ Un site unique qui sert à la fois de **vitrine du catalogue** de formations et 
 ---
 
 ## Changelog
+- **v0.4** — Éditeur visuel de slides intégré, local avec publication sur GitHub ; le pilote sera converti au format modifiable. Mode QR code mis en pause (ADR-014).
 - **v0.3** — Catalogue repensé en expérience « streaming » (demande du porteur de projet), intro animée, favoris et reprise dans le navigateur (ADR-013).
 - **v0.2** — Ajout du mode présentateur, de l'effet miroir, des quiz/avis bimodes et des QR codes. Vote par téléphone sorti des exclusions et planifié en v1.1 (ADR-010). Formation pilote validée (ADR-011).
 - **v0.1.1** — Stack : Next.js (ADR-005). Pas de changement de périmètre.
