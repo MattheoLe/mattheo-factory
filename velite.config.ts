@@ -53,6 +53,26 @@ const modules = defineCollection({
     }),
 });
 
+// Canvas sequences (ADR-014): JSON files written by the visual editor.
+const canvasModules = defineCollection({
+  name: "CanvasModule",
+  pattern: "formations/*/modules/*.json",
+  schema: s
+    .object({
+      title: s.string(),
+      kind,
+      duration: s.number(),
+      durations: s.record(format, s.number()).optional(),
+      levels: s.array(level).optional(),
+      slides: s.array(s.any()),
+      path: s.path(),
+    })
+    .transform(({ path, ...data }) => {
+      const [, formation = "", , file = ""] = path.split("/");
+      return { ...data, formation, id: file.split("-")[0] ?? file };
+    }),
+});
+
 export default defineConfig({
   root: "content",
   output: {
@@ -61,5 +81,5 @@ export default defineConfig({
     base: "/static/",
     clean: true,
   },
-  collections: { formations, modules },
+  collections: { formations, modules, canvasModules },
 });

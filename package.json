@@ -17,6 +17,9 @@
     "qrcode": "^1.5.4",
     "react": "19.3.0",
     "react-dom": "19.3.0",
+    "react-moveable": "^0.56.0",
+    "react-selecto": "^1.26.3",
+    "server-only": "^0.0.1",
     "velite": "^0.4.0"
   },
   "devDependencies": {

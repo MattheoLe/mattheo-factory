@@ -416,3 +416,18 @@
     translate: 0 0;
   }
 }
+
+/* Canvas slides (ADR-014) ------------------------------------------------ */
+.canvas-stage {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.canvas-el {
+  box-sizing: border-box;
+}
+
+.slide[data-layout="canvas"] {
+  background-color: transparent;
+}

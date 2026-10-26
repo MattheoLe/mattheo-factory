@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
+import { CanvasSlideSection } from "@/components/canvas/CanvasSlideSection";
 import { MDXContent } from "@/components/mdx/MDXContent";
 import { Deck } from "@/components/presenter/Deck";
 import { ModuleGate } from "@/components/presenter/ModuleGate";
@@ -40,7 +41,11 @@ async function Session({ params }: { params: Params }) {
     <Deck deckId={formation.slug} title={formation.title} formats={formation.formats}>
       {modules.map((module) => (
         <ModuleGate key={module.id} id={module.id} levels={module.levels}>
-          <MDXContent code={module.body} />
+          {module.source === "mdx" ? (
+            <MDXContent code={module.body} />
+          ) : (
+            module.slides.map((slide) => <CanvasSlideSection key={slide.id} slide={slide} />)
+          )}
         </ModuleGate>
       ))}
     </Deck>
