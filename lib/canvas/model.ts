@@ -149,13 +149,13 @@ export function createSlide(): CanvasSlide {
 /** Light validation of data coming from disk or from the editor. */
 export function isCanvasModule(value: unknown): value is CanvasModule {
   if (!value || typeof value !== "object") return false;
-  const module = value as Partial<CanvasModule>;
+  const candidate = value as Partial<CanvasModule>;
   return (
-    typeof module.title === "string" &&
-    typeof module.kind === "string" &&
-    typeof module.duration === "number" &&
-    Array.isArray(module.slides) &&
-    module.slides.every(
+    typeof candidate.title === "string" &&
+    typeof candidate.kind === "string" &&
+    typeof candidate.duration === "number" &&
+    Array.isArray(candidate.slides) &&
+    candidate.slides.every(
       (slide) => slide && typeof slide.id === "string" && Array.isArray(slide.elements),
     )
   );
